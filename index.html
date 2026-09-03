@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <script>
-      // Block any browser extension console errors or unhandled rejections in sandbox environment
+      // Block noisy browser-extension console errors in sandboxed environments.
       (function() {
         var suppressPatterns = [
           'failed to get initial state',
@@ -24,58 +24,26 @@
         }
         function checkAny(val) {
           if (!val) return false;
-          if (typeof val === 'string') {
-            return shouldSuppress(val);
-          }
+          if (typeof val === 'string') return shouldSuppress(val);
           try {
             if (shouldSuppress(val.message)) return true;
             if (shouldSuppress(val.stack)) return true;
             if (shouldSuppress(val.name)) return true;
             if (shouldSuppress(val.reason)) return true;
             if (shouldSuppress(String(val))) return true;
-            for (var key in val) {
-              if (Object.prototype.hasOwnProperty.call(val, key)) {
-                var propVal = val[key];
-                if (typeof propVal === 'string' && shouldSuppress(propVal)) {
-                  return true;
-                }
-              }
-            }
           } catch(e) {}
           return false;
         }
         function makeSafeLogger(originalLogger) {
           return function() {
             for (var i = 0; i < arguments.length; i++) {
-              if (checkAny(arguments[i])) {
-                return;
-              }
+              if (checkAny(arguments[i])) return;
             }
-            if (originalLogger) {
-              originalLogger.apply(console, arguments);
-            }
+            if (originalLogger) originalLogger.apply(console, arguments);
           };
         }
         console.error = makeSafeLogger(console.error);
         console.warn = makeSafeLogger(console.warn);
-        console.log = makeSafeLogger(console.log);
-        console.info = makeSafeLogger(console.info);
-        console.debug = makeSafeLogger(console.debug);
-        if (console.dir) console.dir = makeSafeLogger(console.dir);
-        if (console.group) console.group = makeSafeLogger(console.group);
-        if (console.groupCollapsed) console.groupCollapsed = makeSafeLogger(console.groupCollapsed);
-
-        window.onerror = function(message, source, lineno, colno, error) {
-          if (checkAny(message) || checkAny(source) || checkAny(error)) {
-            return true;
-          }
-        };
-        window.addEventListener('error', function(event) {
-          if (checkAny(event.message) || checkAny(event.error)) {
-            event.stopImmediatePropagation();
-            event.preventDefault();
-          }
-        }, true);
         window.addEventListener('unhandledrejection', function(event) {
           if (checkAny(event.reason)) {
             event.stopImmediatePropagation();
@@ -84,14 +52,21 @@
         }, true);
       })();
     </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Olaoluwa`s Portfolio</title>
+    <meta
+      name="description"
+      content="Bankole Olaoluwa — Founder, AI Product Builder and Enterprise Automation Strategist. Founder of Apex Sync and builder of APEX ONE."
+    />
+    <title>Bankole Olaoluwa | Founder & AI Product Builder</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
   </head>
+
   <body>
     <!-- Background Video & Mask Overlays -->
     <div class="background-video-container">
@@ -102,17 +77,16 @@
     <div class="overlay-top"></div>
     <div class="overlay-bottom"></div>
 
-    <!-- Header Navigation Section -->
+    <!-- Header -->
     <header class="header">
       <div class="header-container max-width-7xl px-4 px-sm-6 px-lg-8">
         <div class="logo-container">
           <div>
-            <div class="logo-text">OLAOLUWA'S</div>
-            <div class="logo-sub">PORTFOLIO & PLANNER</div>
+            <div class="logo-text">BANKOLE OLAOLUWA</div>
+            <div class="logo-sub">FOUNDER • AI PRODUCT BUILDER</div>
           </div>
         </div>
 
-        <!-- Desktop Navigation Items -->
         <nav class="desktop-nav">
           <button class="nav-button active" data-tab="home">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -120,15 +94,15 @@
           </button>
           <button class="nav-button" data-tab="about">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            About Me
+            About
           </button>
           <button class="nav-button" data-tab="projects">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-            Projects
+            Work
           </button>
           <button class="nav-button" data-tab="planner">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-            Academic Planner
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+            Intelligence
           </button>
           <button class="nav-button" data-tab="contact">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -136,63 +110,35 @@
           </button>
         </nav>
 
-        <!-- Digital Clock & Mobile Menu trigger -->
-        <div style="display: flex; align-items: center; gap: 1rem;">
-
+        <div style="display:flex;align-items:center;gap:1rem;">
           <button id="mobile-menu-trigger" class="mobile-nav-trigger" aria-label="Toggle Navigation Menu">
             <svg id="menu-icon-hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            <svg id="menu-icon-close" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+            <svg id="menu-icon-close" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Dropdown Navigation Menu -->
       <nav id="mobile-menu" class="mobile-nav-dropdown">
         <div class="mobile-nav-dropdown-content">
-          <button class="mobile-nav-button active" data-tab="home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            Home
-          </button>
-          <button class="mobile-nav-button" data-tab="about">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            About Me
-          </button>
-          <button class="mobile-nav-button" data-tab="projects">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-            Projects
-          </button>
-          <button class="mobile-nav-button" data-tab="planner">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-            Academic Planner
-          </button>
-          <button class="mobile-nav-button" data-tab="contact">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Contact
-          </button>
+          <button class="mobile-nav-button active" data-tab="home">Home</button>
+          <button class="mobile-nav-button" data-tab="about">About</button>
+          <button class="mobile-nav-button" data-tab="projects">Work</button>
+          <button class="mobile-nav-button" data-tab="planner">Intelligence</button>
+          <button class="mobile-nav-button" data-tab="contact">Contact</button>
         </div>
       </nav>
     </header>
 
-    <!-- Main Views Content Area -->
     <main>
-      
-      <!-- ============================================== -->
-      <!-- SECTION 1: HOME (Hero Canvas Reveal & Narrative) -->
-      <!-- ============================================== -->
+      <!-- HOME -->
       <section id="tab-home" class="tab-content active">
-        <!-- Spotlight Interactive Reveal Canvas Container -->
         <div id="canvas-reveal-root" class="hero-canvas-container">
-          <!-- Neutral Portrait (Always underneath) -->
-          <img class="img-base" src="https://lh3.googleusercontent.com/d/1yj2N70l_inwTtpQ5egl17wM1CKPsqsXx" alt="Olaoluwa Neutral" crossorigin="anonymous" />
-          
-          <!-- Liquid Revealer Canvas (Interactions happen here) -->
+          <img class="img-base" src="https://lh3.googleusercontent.com/d/1yj2N70l_inwTtpQ5egl17wM1CKPsqsXx" alt="Bankole Olaoluwa portrait" crossorigin="anonymous" />
           <canvas id="interactive-reveal-canvas"></canvas>
         </div>
 
-        <!-- Narrative Section (Briefing & Biography Summary) -->
         <div id="home-narrative" class="narrative-section py-20 px-4 px-sm-6 px-lg-8">
           <div class="max-width-7xl">
-            <!-- Header elements -->
             <div class="brand-header-grid">
               <h1 class="brand-title">
                 <span class="brand-first-name">BANKOLE</span>
@@ -200,401 +146,333 @@
               </h1>
               <div class="narrative-header-meta">
                 <p class="narrative-headline">
-                  Results-driven Computer Science undergraduate with practical experience in full-stack web development, AI workflow automation, instructional media production, and digital content creation.
+                  Founder, AI Product Builder &amp; Enterprise Automation Strategist building intelligent systems at the intersection of AI, enterprise software and business operations.
                 </p>
               </div>
             </div>
 
-            <!-- Double-Column Biography & Bento info -->
-            <div class="narrative-columns-grid" style="margin-top: 4rem;">
-              <!-- Left: Narrative profile paragraphs -->
+            <div class="narrative-columns-grid" style="margin-top:4rem;">
               <div class="summary-paragraphs">
                 <div>
                   <h3 class="summary-label">Executive Briefing</h3>
-                  <p class="lead-p" style="margin-top: 1rem;">
-                    Building scalable, user-centric web applications and AI-driven workflow automations. Specializing in bridging engineering architectures with polished front-end layouts.
+                  <p class="lead-p" style="margin-top:1rem;">
+                    I build technology around a simple question: how can intelligent systems help organizations operate better?
                   </p>
                 </div>
                 <p class="body-p">
-                  Skilled in designing business automations, implementing responsive layouts, and establishing robust client platforms. Proven history collaborating in rapid-scale environments across healthcare, digital educational platforms, and customized e-commerce ventures.
+                  My work spans AI, product design, automation and enterprise software. I am currently focused on building Apex Sync and its flagship product, APEX ONE.
                 </p>
                 <p class="body-p">
-                  Committed to academic excellence in Computer Science, pushing boundaries of system designs, and compiling responsive layouts designed to load efficiently under strict standards.
+                  My background across software, automation, digital media and creative production shapes how I build: I care about both how systems work and how people experience them.
                 </p>
               </div>
 
-              <!-- Right: Bento Academic Info Card list -->
               <div>
-                <h3 class="academic-credentials-title">Academic Credentials</h3>
+                <h3 class="academic-credentials-title">Current Focus</h3>
                 <div class="credentials-stack">
-                  <!-- Miva Open University card -->
                   <div class="bento-card">
-                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
                     <div class="bento-card-meta">
-                      <span class="meta-label">B.Sc. Computer Science</span>
-                      <span class="meta-title">MIVA Open University</span>
-                      <span class="meta-desc">Ongoing Degree • Specialized Curriculum</span>
+                      <span class="meta-label">FOUNDER</span>
+                      <span class="meta-title">Apex Sync</span>
+                      <span class="meta-desc">Building intelligent software for modern organizations.</span>
                     </div>
                   </div>
 
-                  <!-- High School Credentials Card 1 -->
                   <div class="bento-card">
-                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="13" y2="13"/><line x1="9" x2="9" y1="9" y2="15"/></svg>
+                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
                     <div class="bento-card-meta">
-                      <span class="meta-label">Senior Secondary Education</span>
-                      <span class="meta-title">Isheri Senior Grammar School</span>
-                      <span class="meta-desc">Graduated: 2019 – 2024</span>
+                      <span class="meta-label">FLAGSHIP PRODUCT</span>
+                      <span class="meta-title">APEX ONE</span>
+                      <span class="meta-desc">An enterprise intelligence platform for connected operations, knowledge and decision-making.</span>
                     </div>
                   </div>
 
-                  <!-- Primary/Junior Credentials Card 2 -->
                   <div class="bento-card">
-                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+                    <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/><path d="M9 22h6"/></svg>
                     <div class="bento-card-meta">
-                      <span class="meta-label">Primary & Junior Education</span>
-                      <span class="meta-title">Living Spring</span>
-                      <span class="meta-desc">Graduated: 2014 – 2019</span>
+                      <span class="meta-label">RESEARCH &amp; PHILOSOPHY</span>
+                      <span class="meta-title">Enterprise Intelligence</span>
+                      <span class="meta-desc">Exploring what comes after fragmented SaaS and conventional business automation.</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Narrative CTAs and Core Tech stats indicators -->
             <div class="narrative-ctas-block">
               <div class="ctas-row">
-                <button class="btn-primary" data-tab-link="about">
-                  Explore Full CV
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <button class="btn-primary" data-tab-link="projects">
+                  Explore My Work
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
-                <button class="btn-secondary" data-tab-link="projects">
-                  View Portfolio Projects
-                </button>
+                <button class="btn-secondary" data-tab-link="about">Founder Profile</button>
               </div>
-
-
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- SECTION 2: ABOUT ME (Curriculum Vitae View)   -->
-      <!-- ============================================== -->
+      <!-- ABOUT -->
       <section id="tab-about" class="tab-content py-10 px-4 px-sm-6 px-lg-8 max-width-6xl">
-        <!-- Main CV page header -->
-        <div class="about-header glass-panel" style="border-radius: 1rem; padding: 2rem;">
+        <div class="about-header glass-panel" style="border-radius:1rem;padding:2rem;">
           <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            CURRICULUM VITAE
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            FOUNDER PROFILE
           </h2>
-          <p>Comprehensive professional history, credentials, education background, and active technical skills catalog.</p>
+          <p>Technology, product strategy, enterprise intelligence and the path that brought them together.</p>
         </div>
 
-        <!-- Highlighted professional summary quote card -->
         <div class="about-summary-quote">
-          <h3>Professional Summary</h3>
+          <h3>About Bankole Olaoluwa</h3>
           <p>
-            "Results-driven Computer Science undergraduate with practical experience in full-stack web development, AI workflow automation, instructional media production, and digital content creation. Skilled in building scalable web applications, automating business processes, and delivering user-focused digital solutions across healthcare, education, and e-commerce industries. Strong problem-solving, communication, and adaptability skills with proven ability to learn new technologies quickly and collaborate effectively in fast-paced environments."
+            I am a technology entrepreneur and product builder focused on artificial intelligence, enterprise automation and intelligent software systems. My work sits at the intersection of technology, business operations, product strategy and design. Today, I am building Apex Sync and APEX ONE with a long-term focus on helping organizations move from fragmented tools and workflows toward intelligent, connected operations.
           </p>
         </div>
 
-        <!-- Academic Background Section (Tables) -->
         <div class="section-headline">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-          Academic Background History
-        </div>
-
-        <div class="table-container">
-          <table class="table-native">
-            <thead>
-              <tr>
-                <th>Institution Name</th>
-                <th>Educational Level</th>
-                <th>Academic Period</th>
-                <th>Primary Course / focus</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="font-weight: 700; color: #fff;">MIVA Open University</td>
-                <td>Higher Education / Undergraduate</td>
-                <td style="color: var(--color-gold-brand); font-family: var(--font-mono); font-size: 0.75rem;">2024 – Present</td>
-                <td>B.Sc. Computer Science</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 700; color: #fff;">Isheri Senior Grammar School</td>
-                <td>Senior Secondary Education</td>
-                <td style="color: var(--color-gold-brand); font-family: var(--font-mono); font-size: 0.75rem;">2019 – 2024</td>
-                <td>Sciences & Information Technology basics</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 700; color: #fff;">Living Spring School</td>
-                <td>Primary & Junior Secondary Education</td>
-                <td style="color: var(--color-gold-brand); font-family: var(--font-mono); font-size: 0.75rem;">2014 – 2019</td>
-                <td>General Foundational Sciences</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Professional Timeline Section -->
-        <div class="section-headline">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Professional Experience
-        </div>
-
-        <div class="timeline-list">
-          <!-- Timeline Item 1 -->
-          <div class="timeline-item">
-            <div class="timeline-bullet"></div>
-            <div class="timeline-header">
-              <h3 class="timeline-title">Freelance Full-Stack Engineer & AI Automator</h3>
-              <span class="timeline-period">2025 – Present</span>
-            </div>
-            <div class="timeline-company">Self-Employed | Remote Contract</div>
-            <ul class="timeline-bullets">
-              <li>Designed and developed responsive web applications for healthcare, education, and e-commerce businesses.</li>
-              <li>Built AI-powered workflow automations to improve operational efficiency and reduce repetitive manual tasks.</li>
-              <li>Successfully integrated APIs and custom backend routers keeping API credentials completely private.</li>
-            </ul>
-          </div>
-
-          <!-- Timeline Item 2 -->
-          <div class="timeline-item">
-            <div class="timeline-bullet"></div>
-            <div class="timeline-header">
-              <h3 class="timeline-title">Instructional Video Developer & YouTube Creator</h3>
-              <span class="timeline-period">2024 – 2025</span>
-            </div>
-            <div class="timeline-company">ChipMango | Contract / Hybrid</div>
-            <ul class="timeline-bullets">
-              <li>Produced high-quality educational videos, animations, and voiceovers on software development frameworks.</li>
-              <li>Managed end-to-end video production lifecycles including scripts, asset creation, screen recording, and final edits.</li>
-              <li>Collaborated with design instructors to present software engineering concepts clearly to audiences.</li>
-            </ul>
-          </div>
-
-          <!-- Timeline Item 3 -->
-          <div class="timeline-item">
-            <div class="timeline-bullet"></div>
-            <div class="timeline-header">
-              <h3 class="timeline-title">Freelance Web Developer</h3>
-              <span class="timeline-period">2023 – 2024</span>
-            </div>
-            <div class="timeline-company">Self-Employed | Contract / Remote</div>
-            <ul class="timeline-bullets">
-              <li>Built visually clean and performant responsive portfolios, landing pages, and customized online menus.</li>
-              <li>Refined layouts using HTML, CSS, JavaScript, and asset management scripts.</li>
-              <li>Delivered complete user interfaces on schedule, ensuring multi-device screen fluidities.</li>
-            </ul>
-          </div>
-
-          <!-- Timeline Item 4 -->
-          <div class="timeline-item">
-            <div class="timeline-bullet"></div>
-            <div class="timeline-header">
-              <h3 class="timeline-title">Executive Assistant & Video Editor</h3>
-              <span class="timeline-period">2021 – 2023</span>
-            </div>
-            <div class="timeline-company">GRUB’SVILLE KITCHEN | Lagos State, Nigeria</div>
-            <ul class="timeline-bullets">
-              <li>Managed digital branding schedules, edited social videos, and tracked customer inquiries.</li>
-              <li>Enhanced online order structures, which improved digital inquiries on menus and catering.</li>
-              <li>Optimized operational administrative flow for the kitchen and order logging procedures.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Technical & Soft Skills catalog -->
-        <div class="section-headline">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-          Technical & Soft Skills Inventory
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          What I Do
         </div>
 
         <div class="skills-grid">
-          <!-- Skills Card 1: Web Tech -->
           <div class="skills-category-card">
-            <h4>Front-End & Back-End Web Engineering</h4>
+            <h4>AI &amp; Intelligent Systems</h4>
             <div class="skills-badges-wrap">
-              <div class="skill-badge"><span class="skill-badge-dot"></span>HTML5 / Semantic DOM</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>CSS3 / Flexbox / Grid</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>TypeScript / ES6+</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>React.js Framework</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Vite / Front-End Tooling</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Node.js / Express Servers</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>AI Workflow Automation</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>AI Agents &amp; LLM Applications</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>API Integrations &amp; Webhooks</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Intelligent Business Workflows</div>
             </div>
           </div>
 
-          <!-- Skills Card 2: AI & Production -->
           <div class="skills-category-card">
-            <h4>Workflows, AI Automations & Production</h4>
+            <h4>Product &amp; Software</h4>
             <div class="skills-badges-wrap">
-              <div class="skill-badge"><span class="skill-badge-dot"></span>AI Workflow Automations</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>API Integrations & Webhooks</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Video Editing & Production</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Instructional Media Content</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Problem Solving / Logic</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Collaborative Communication</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Product Strategy</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Product Prototyping</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Web Application Development</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>UX &amp; Systems Thinking</div>
+            </div>
+          </div>
+
+          <div class="skills-category-card">
+            <h4>Enterprise Systems</h4>
+            <div class="skills-badges-wrap">
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Business Process Design</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Workflow Architecture</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Enterprise Automation</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Operational Intelligence</div>
+            </div>
+          </div>
+
+          <div class="skills-category-card">
+            <h4>Creative Communication</h4>
+            <div class="skills-badges-wrap">
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Brand Strategy</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Visual Communication</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Video Production</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Storytelling &amp; Creative Direction</div>
             </div>
           </div>
         </div>
 
-        <!-- Awards & Academic Achievements -->
-        <div class="section-headline" style="margin-top: 4rem;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-          Awards & Academic Achievements
+        <div class="section-headline" style="margin-top:4rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Journey
         </div>
 
-        <div class="awards-grid">
-          <div class="award-card">
-            <span class="award-card-title">MIVA Academic Excellence</span>
-            <p class="award-card-desc">Recognized for outstanding logical analytics and programming paradigms inside current computer science curriculum.</p>
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div class="timeline-header">
+              <h3 class="timeline-title">Founder &amp; Product Builder</h3>
+              <span class="timeline-period">CURRENT</span>
+            </div>
+            <div class="timeline-company">Apex Sync</div>
+            <ul class="timeline-bullets">
+              <li>Leading the product vision for APEX ONE and the broader Apex Sync ecosystem.</li>
+              <li>Exploring enterprise intelligence, AI-native workflows and connected organizational systems.</li>
+              <li>Working across product strategy, prototyping, system design, brand direction and business development.</li>
+            </ul>
           </div>
-          <div class="award-card">
-            <span class="award-card-title">Full-Stack Capability Marker</span>
-            <p class="award-card-desc">Successful deployment of cross-functional client applications with zero exposed credential hazards.</p>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div class="timeline-header">
+              <h3 class="timeline-title">Software &amp; AI Automation Projects</h3>
+              <span class="timeline-period">2025 – PRESENT</span>
+            </div>
+            <div class="timeline-company">Independent Builds</div>
+            <ul class="timeline-bullets">
+              <li>Built responsive web applications, interactive experiences and AI-powered workflow automations.</li>
+              <li>Worked with APIs, webhooks, front-end systems and automation logic across client and personal projects.</li>
+            </ul>
           </div>
-          <div class="award-card">
-            <span class="award-card-title">Outstanding Term Project</span>
-            <p class="award-card-desc">COS 106 term project marked at full 100% execution score on responsive layout and native structure criteria.</p>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div class="timeline-header">
+              <h3 class="timeline-title">Instructional Video Editor</h3>
+              <span class="timeline-period">2025</span>
+            </div>
+            <div class="timeline-company">ChipMango • Contract</div>
+            <ul class="timeline-bullets">
+              <li>Produced structured instructional and explainer content for online learning products.</li>
+              <li>Used AI-assisted editing workflows to turn scripts and source assets into clear lessons.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div class="timeline-header">
+              <h3 class="timeline-title">Digital Content &amp; Social Media</h3>
+              <span class="timeline-period">EARLIER WORK</span>
+            </div>
+            <div class="timeline-company">Creative &amp; Client Work</div>
+            <ul class="timeline-bullets">
+              <li>Worked across content strategy, video editing, branding, social media management and creative execution.</li>
+              <li>Developed the communication and design foundation that now informs how I build and present technology products.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-headline" style="margin-top:4rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+          Education
+        </div>
+
+        <div class="credentials-stack">
+          <div class="bento-card">
+            <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+            <div class="bento-card-meta">
+              <span class="meta-label">B.Sc. COMPUTER SCIENCE</span>
+              <span class="meta-title">MIVA Open University</span>
+              <span class="meta-desc">Ongoing undergraduate degree.</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- SECTION 3: PROJECTS (Portfolio Page)         -->
-      <!-- ============================================== -->
+      <!-- WORK -->
       <section id="tab-projects" class="tab-content py-10 px-4 px-sm-6 px-lg-8 max-width-6xl">
-        <div class="projects-header glass-panel" style="border-radius: 1rem; padding: 2rem;">
+        <div class="projects-header glass-panel" style="border-radius:1rem;padding:2rem;">
           <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            PROJECT PORTFOLIO
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            SELECTED WORK
           </h2>
-          <p>Live production links, open-source repositories, and technical layouts built with optimized visual DOM structures.</p>
+          <p>Ventures, products and selected builds across enterprise intelligence, software, automation and digital experiences.</p>
         </div>
 
-        <div class="projects-grid" style="margin-top: 3rem;">
-          <!-- PROJECT 1: The RaySignature Award -->
+        <div class="section-headline" style="margin-top:3rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+          Flagship
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card" style="grid-column:1 / -1;">
+            <div class="project-card-top">
+              <div class="project-badge-wrap">
+                <span class="project-category-badge">FLAGSHIP PRODUCT</span>
+              </div>
+              <h3 class="project-card-title">APEX ONE</h3>
+              <p class="project-card-desc">
+                An enterprise intelligence platform being designed to connect organizational knowledge, workflows and decision-making in one intelligent operating environment.
+              </p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Enterprise Intelligence</span>
+                <span class="project-tech-tag">AI</span>
+                <span class="project-tech-tag">Workflow Automation</span>
+                <span class="project-tech-tag">Product Strategy</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <span class="btn-github-link" style="pointer-events:none;">Currently Building</span>
+            </div>
+          </div>
+
           <div class="project-card">
             <div class="project-card-top">
               <div class="project-badge-wrap">
-                <span class="project-category-badge">LIVE PLATFORM</span>
-                <svg style="width: 1rem; height: 1rem; color: var(--color-gold-brand);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275z"/></svg>
+                <span class="project-category-badge">VENTURE</span>
               </div>
-
-              <!-- Vector mockup representation -->
-              <div class="project-graphics-mockup">
-                <div class="project-graphics-mockup-bg"></div>
-                <!-- Abstract Code Matrix Graphic -->
-                <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="80" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
-                  <line x1="15" y1="20" x2="45" y2="20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <line x1="15" y1="28" x2="65" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="15" y1="36" x2="35" y2="36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="75" cy="20" r="4" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.1"/>
-                  <path d="M68 36l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-
-              <h3 class="project-card-title">The Raysignature Award</h3>
+              <h3 class="project-card-title">Apex Sync</h3>
               <p class="project-card-desc">
-                An executive digital award logging and recognition system crafted with rapid-loading layouts, dynamic client states, and modern animations.
+                A technology company focused on intelligent software, enterprise automation and the systems that will power AI-native organizations.
               </p>
-              
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Company Building</span>
+                <span class="project-tech-tag">AI Products</span>
+                <span class="project-tech-tag">Enterprise Software</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap">
+                <span class="project-category-badge">RESEARCH / WRITING</span>
+              </div>
+              <h3 class="project-card-title">Enterprise Intelligence</h3>
+              <p class="project-card-desc">
+                A growing body of ideas around AI-native organizations, intelligent operating systems, connected workflows and the future of enterprise software.
+              </p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Research</span>
+                <span class="project-tech-tag">Systems Thinking</span>
+                <span class="project-tech-tag">Thought Leadership</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-headline" style="margin-top:4rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8v8H8z"/></svg>
+          Selected Builds
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap"><span class="project-category-badge">LIVE PLATFORM</span></div>
+              <h3 class="project-card-title">The Raysignature Award</h3>
+              <p class="project-card-desc">An executive digital award and recognition experience built with responsive layouts, interactive states and modern animations.</p>
               <div class="project-tech-stack-row">
                 <span class="project-tech-tag">HTML5</span>
                 <span class="project-tech-tag">Tailwind</span>
-                <span class="project-tech-tag">JS ES6</span>
+                <span class="project-tech-tag">JavaScript</span>
                 <span class="project-tech-tag">Vite</span>
               </div>
             </div>
-
             <div class="project-card-footer">
-              <a href="https://the-raysignature-award.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">
-                Visit Live Project
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-              <a href="https://github.com/olaoluwabankole3-cmd/The-Raysignature-Award" target="_blank" rel="noopener noreferrer" class="btn-github-link">
-                GitHub Repository
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              </a>
+              <a href="https://the-raysignature-award.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">Visit Live Project</a>
+              <a href="https://github.com/olaoluwabankole3-cmd/The-Raysignature-Award" target="_blank" rel="noopener noreferrer" class="btn-github-link">GitHub Repository</a>
             </div>
           </div>
 
-          <!-- PROJECT 2: Ed-Alfie Winmax Advisory -->
           <div class="project-card">
             <div class="project-card-top">
-              <div class="project-badge-wrap">
-                <span class="project-category-badge">CLIENT PORTAL</span>
-                <svg style="width: 1rem; height: 1rem; color: var(--color-gold-brand);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275z"/></svg>
-              </div>
-
-              <!-- Vector mockup representation -->
-              <div class="project-graphics-mockup">
-                <div class="project-graphics-mockup-bg"></div>
-                <!-- Abstract financial charts vector mockup -->
-                <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="80" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
-                  <path d="M18 42l12-16 14 10 16-18 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="18" cy="42" r="2" fill="currentColor"/>
-                  <circle cx="30" cy="26" r="2" fill="currentColor"/>
-                  <circle cx="44" cy="36" r="2" fill="currentColor"/>
-                  <circle cx="60" cy="18" r="2" fill="currentColor"/>
-                  <circle cx="72" cy="28" r="2" fill="currentColor"/>
-                </svg>
-              </div>
-
+              <div class="project-badge-wrap"><span class="project-category-badge">CLIENT PLATFORM</span></div>
               <h3 class="project-card-title">Ed-Alfie Winmax Advisory</h3>
-              <p class="project-card-desc">
-                An educational advisory website tailored with responsive booking workflows, secure contact forms, and client engagement tools.
-              </p>
-              
+              <p class="project-card-desc">An educational advisory website with responsive booking workflows, secure contact forms and client engagement tools.</p>
               <div class="project-tech-stack-row">
                 <span class="project-tech-tag">HTML5</span>
                 <span class="project-tech-tag">Tailwind</span>
-                <span class="project-tech-tag">JS / CSS</span>
-                <span class="project-tech-tag">SSL Verified</span>
+                <span class="project-tech-tag">JavaScript</span>
+                <span class="project-tech-tag">Responsive UI</span>
               </div>
             </div>
-
             <div class="project-card-footer">
-              <a href="https://eawadvisory.com/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">
-                Visit Live Project
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-              <a href="https://github.com/olaoluwabankole3-cmd/Ed-Alfie-Winmax-Advisory" target="_blank" rel="noopener noreferrer" class="btn-github-link">
-                GitHub Repository
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              </a>
+              <a href="https://eawadvisory.com/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">Visit Live Project</a>
+              <a href="https://github.com/olaoluwabankole3-cmd/Ed-Alfie-Winmax-Advisory" target="_blank" rel="noopener noreferrer" class="btn-github-link">GitHub Repository</a>
             </div>
           </div>
 
-          <!-- PROJECT 3: Captured By Adesuwa Proposal -->
           <div class="project-card">
             <div class="project-card-top">
-              <div class="project-badge-wrap">
-                <span class="project-category-badge">PROPOSAL DECK</span>
-                <svg style="width: 1rem; height: 1rem; color: var(--color-gold-brand);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275z"/></svg>
-              </div>
-
-              <!-- Vector mockup representation -->
-              <div class="project-graphics-mockup">
-                <div class="project-graphics-mockup-bg"></div>
-                <!-- Abstract photography frame mockup -->
-                <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="15" y="10" width="70" height="40" rx="2" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="50" cy="30" r="10" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="50" cy="30" r="4" fill="currentColor"/>
-                  <rect x="25" y="15" width="8" height="6" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </div>
-
+              <div class="project-badge-wrap"><span class="project-category-badge">INTERACTIVE PROPOSAL</span></div>
               <h3 class="project-card-title">Captured By Adesuwa Proposal</h3>
-              <p class="project-card-desc">
-                An interactive media presentation deck and digital photography proposal layout, customized with fluid galleries and animations.
-              </p>
-              
+              <p class="project-card-desc">An interactive media presentation and photography proposal experience with responsive galleries and motion-led storytelling.</p>
               <div class="project-tech-stack-row">
                 <span class="project-tech-tag">HTML5</span>
                 <span class="project-tech-tag">CSS Grid</span>
@@ -602,209 +480,122 @@
                 <span class="project-tech-tag">Responsive</span>
               </div>
             </div>
-
             <div class="project-card-footer">
-              <a href="https://captured-by-adesuwa-proposal.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">
-                Visit Live Project
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-              <a href="https://github.com/olaoluwabankole3-cmd/Captured-By-Adesuwa-Proposal" target="_blank" rel="noopener noreferrer" class="btn-github-link">
-                GitHub Repository
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              </a>
+              <a href="https://captured-by-adesuwa-proposal.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">Visit Live Project</a>
+              <a href="https://github.com/olaoluwabankole3-cmd/Captured-By-Adesuwa-Proposal" target="_blank" rel="noopener noreferrer" class="btn-github-link">GitHub Repository</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- SECTION 4: ACADEMIC PLANNER (Interactive App)  -->
-      <!-- ============================================== -->
+      <!-- INTELLIGENCE / FOUNDER CONSOLE -->
       <section id="tab-planner" class="tab-content py-10 px-4 px-sm-6 px-lg-8 max-width-6xl">
-        <div class="planner-header glass-panel" style="border-radius: 1rem; padding: 2rem;">
+        <div class="planner-header glass-panel" style="border-radius:1rem;padding:2rem;">
           <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-            ACADEMIC WORKLOAD PLANNER
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M8 19V9M12 19V3M16 19v-6M20 19V7"/></svg>
+            FOUNDER CONSOLE
           </h2>
-          <p>Organize exams, project weights, homework deadlines, and monitor your curriculum schedules in real time.</p>
+          <p>A public snapshot of what I am building, researching and exploring right now.</p>
         </div>
 
-        <div class="planner-grid" style="margin-top: 3rem;">
-          <!-- Left: Add New Task Form -->
-          <div class="glass-panel" style="border-radius: 1rem; padding: 1.5rem;">
-            <h3 class="planner-form-title">Scheduler Control Board</h3>
-            <form id="add-task-form" class="form-group-stack">
-              <!-- Task Title -->
-              <div class="form-field-wrap">
-                <label for="task-title-input" class="form-field-label">Task Identifier / Course Name</label>
-                <input id="task-title-input" type="text" class="glass-input glass-input-field" placeholder="e.g. COS 106 Term Project Compilation" required />
-              </div>
+        <div class="section-headline" style="margin-top:3rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Currently Building
+        </div>
 
-              <!-- Two column parameters -->
-              <div class="form-row-2col">
-                <!-- Category Select -->
-                <div class="form-field-wrap">
-                  <label for="task-category-select" class="form-field-label">Category</label>
-                  <select id="task-category-select" class="glass-input glass-select-field">
-                    <option value="Exam">Exam Prep</option>
-                    <option value="Project">Term Project</option>
-                    <option value="Assignment">Assignment</option>
-                    <option value="Lab">Lab Experiment</option>
-                    <option value="Lecture">Lecture Notes</option>
-                  </select>
-                </div>
-
-                <!-- Priority Select -->
-                <div class="form-field-wrap">
-                  <label for="task-priority-select" class="form-field-label">Priority Scale</label>
-                  <select id="task-priority-select" class="glass-input glass-select-field">
-                    <option value="High">🔴 High Priority</option>
-                    <option value="Medium" selected>🟡 Medium Priority</option>
-                    <option value="Low">🟢 Low Priority</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Due Date -->
-              <div class="form-field-wrap">
-                <label for="task-date-input" class="form-field-label">Target Completion Date</label>
-                <input id="task-date-input" type="date" class="glass-input glass-input-field" required />
-              </div>
-
-              <!-- Submit button -->
-              <button type="submit" class="btn-form-submit">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                Add Task to Scheduler
-              </button>
-            </form>
-          </div>
-
-          <!-- Right: Interactive Tasks Queue -->
-          <div class="glass-panel" style="border-radius: 1rem; padding: 1.5rem;">
-            <div class="schedulers-box-header">
-              <h3>Academic Task Queue</h3>
-              <div class="schedulers-counter-tags">
-                <span class="counter-tag">Active: <strong id="counter-active">0</strong></span>
-                <span class="counter-tag">Done: <strong id="counter-completed">0</strong></span>
-              </div>
-            </div>
-
-            <!-- List body container -->
-            <div id="schedulers-list" class="schedulers-list-container">
-              <!-- Dynamically populated via Main TS script -->
-              <div class="empty-schedulers-state">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
-                <p>No active academic tasks registered. Use the scheduler panel on the left to add upcoming events.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap"><span class="project-category-badge">PRODUCT • ACTIVE</span></div>
+              <h3 class="project-card-title">APEX ONE</h3>
+              <p class="project-card-desc">Designing the product architecture, workflows and intelligence layer for the flagship Apex Sync platform.</p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Flagship</span>
+                <span class="project-tech-tag">Active Build</span>
               </div>
             </div>
           </div>
+
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap"><span class="project-category-badge">COMPANY • BUILDING</span></div>
+              <h3 class="project-card-title">Apex Sync</h3>
+              <p class="project-card-desc">Developing the company, product direction and operating model around intelligent enterprise software.</p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Venture</span>
+                <span class="project-tech-tag">Strategy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap"><span class="project-category-badge">WRITING • ACTIVE</span></div>
+              <h3 class="project-card-title">Enterprise Intelligence Series</h3>
+              <p class="project-card-desc">Developing essays and frameworks around AI-native organizations, connected operations and the next generation of enterprise software.</p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Ideas</span>
+                <span class="project-tech-tag">Research</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-top">
+              <div class="project-badge-wrap"><span class="project-category-badge">LAB • ONGOING</span></div>
+              <h3 class="project-card-title">AI Experiments</h3>
+              <p class="project-card-desc">Prototyping agents, automations, interfaces and small systems that test ideas before they become larger products.</p>
+              <div class="project-tech-stack-row">
+                <span class="project-tech-tag">Agents</span>
+                <span class="project-tech-tag">Automation</span>
+                <span class="project-tech-tag">Prototypes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-headline" style="margin-top:4rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 16 4-5 4 3 5-7"/></svg>
+          Operating Thesis
+        </div>
+
+        <div class="about-summary-quote">
+          <h3>From Automation to Intelligence</h3>
+          <p>
+            The long-term opportunity is not simply to automate individual tasks. It is to create systems that understand organizational context, connect fragmented workflows and help teams make better decisions. That is the direction behind my work on enterprise intelligence.
+          </p>
         </div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- SECTION 5: CONTACT GATEWAY (Secure Inbox)     -->
-      <!-- ============================================== -->
-      <section id="tab-contact" class="tab-content py-10 px-4 px-sm-6 px-lg-8 max-width-xl">
-        <div class="glass-panel" style="border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
-          <div class="contact-header">
-            <h2>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              SECURE CONTACT PORT
-            </h2>
-            <p>Direct communication gateway to Bankole Olaoluwa's inbox. Payloads are checked and processed locally.</p>
-          </div>
+      <!-- CONTACT -->
+      <section id="tab-contact" class="tab-content py-10 px-4 px-sm-6 px-lg-8 max-width-6xl">
+        <div class="about-header glass-panel" style="border-radius:1rem;padding:2rem;">
+          <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            CONTACT
+          </h2>
+          <p>For product, technology, collaboration and enterprise conversations.</p>
+        </div>
 
-          <!-- Success banner alert (Hidden by default) -->
-          <div id="contact-success-alert" class="alert-container-success" style="display: none;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div class="alert-success-text-wrap">
-              <span class="alert-success-title">SSL Handshake Complete</span>
-              <p class="alert-success-p">Message validated and transmitted successfully! Standard browser notice triggered.</p>
-            </div>
-          </div>
-
-          <!-- Error listing banner (Hidden by default) -->
-          <div id="contact-error-alert" class="alert-container-error" style="display: none;">
-            <div class="alert-error-title-row">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              Validation Failures Detected
-            </div>
-            <ul id="contact-error-list" class="alert-error-list">
-              <!-- Populated dynamically -->
-            </ul>
-          </div>
-
-          <!-- Secure Contact Form -->
-          <form id="contact-form" class="contact-grid-wrap">
-            <!-- Full Name -->
-            <div class="form-field-wrap">
-              <label for="contact-name" class="form-field-label">Sender Identifier (Full Name)</label>
-              <input id="contact-name" type="text" class="glass-input glass-input-field" placeholder="e.g. Prof. Olaoluwa (Academic Advisor)" />
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-field-wrap">
-              <label for="contact-email" class="form-field-label">E-Mail Address</label>
-              <input id="contact-email" type="text" class="glass-input glass-input-field" placeholder="e.g. advisor@miva.edu.ng" />
-            </div>
-
-            <!-- Phone Number -->
-            <div class="form-field-wrap">
-              <label for="contact-phone" class="form-field-label">Phone Reference Number</label>
-              <input id="contact-phone" type="text" class="glass-input glass-input-field" placeholder="e.g. +234 801 234 5678" />
-            </div>
-
-            <!-- Message Area -->
-            <div class="form-field-wrap" style="margin-bottom: 0.5rem;">
-              <label for="contact-message" class="form-field-label">Payload Message Content</label>
-              <textarea id="contact-message" class="glass-input contact-input-textarea" rows="4" placeholder="Type your academic or contracting message here..."></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn-contact-submit">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 2 15 22 11 13 2 9 22 2"/><line x1="22" y1="2" x2="11" y2="13"/></svg>
-              Submit SSL Verified Payload
-            </button>
-          </form>
-
-          <!-- SSL visual metadata -->
-          <div class="contact-footer-metadata">
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              SSL RSA 2048 SHA-256
-            </span>
-            <span id="contact-form-utc">
-              UTC METRIC DETECTED
-            </span>
-          </div>
+        <div class="about-summary-quote" style="margin-top:3rem;">
+          <h3>Let's Build Something Meaningful.</h3>
+          <p>
+            Contact details and social links will be added in the next portfolio pass. For now, this section is intentionally reserved while the core personal brand and project narrative are being finalized.
+          </p>
         </div>
       </section>
-
     </main>
 
-    <!-- Global Layout Footer -->
-    <footer class="footer">
-      <div class="footer-container max-width-7xl px-4 px-sm-6 px-lg-8">
-        <p class="footer-copyright">
-          &copy; 2026 Bankole Olaoluwa. All academic rights reserved. COS 106 Term Project.
-        </p>
-        <div class="footer-links">
-          <span class="footer-link-item" data-tab-footer="home">Home</span>
-          <span>&middot;</span>
-          <span class="footer-link-item" data-tab-footer="about">CV</span>
-          <span>&middot;</span>
-          <span class="footer-link-item" data-tab-footer="projects">Projects</span>
-          <span>&middot;</span>
-          <span class="footer-link-item" data-tab-footer="planner">Planner</span>
-          <span>&middot;</span>
-          <span class="footer-link-item" data-tab-footer="contact">Inbox</span>
+    <footer class="px-4 px-sm-6 px-lg-8" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="max-width-7xl glass-panel" style="border-radius:1rem;padding:1.5rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <div class="logo-text">BANKOLE OLAOLUWA</div>
+          <div class="logo-sub">FOUNDER • AI PRODUCT BUILDER • ENTERPRISE INTELLIGENCE</div>
         </div>
+        <div class="logo-sub">BUILDING APEX SYNC / APEX ONE</div>
       </div>
     </footer>
 
-    <!-- Native JavaScript linked file -->
-    <!-- Public GSAP CDN for smooth transition animation logic -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

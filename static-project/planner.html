@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Planner | Bankole Olaoluwa</title>
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- LOOPED VIDEO BACKGROUND LAYER -->
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="main-header anim-fade">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-icon">✦</div>
+                <div class="logo-text">
+                    <span class="student-name">BANKOLE OLAOLUWA</span>
+                    <span class="course-code">COS 106 Project</span>
+                </div>
+            </div>
+            
+            <nav class="nav-bar">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Me</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="planner.html" class="nav-link active">Planner</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN PLANNER CONTENT -->
+    <main class="main-content">
+        <div class="planner-layout-container anim-stagger">
+            
+            <!-- Left Side: Header description -->
+            <div class="planner-header-block text-center" style="margin-bottom: 2rem;">
+                <span class="welcome-badge">INTERACTIVE STATE UTILITY</span>
+                <h2 class="section-title">COS 106 Course Task Scheduler</h2>
+                <p class="section-intro">Schedule, track, complete, and delete your academic term work in high-fidelity sandbox real-time.</p>
+            </div>
+
+            <div class="planner-split-grid">
+                
+                <!-- Left Control: Input form panel -->
+                <div class="planner-form-panel glass-panel">
+                    <h3 class="subsection-title">Schedule New Activity</h3>
+                    <form id="task-form" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <label for="task-input" class="form-label">Activity Title / Detail</label>
+                            <input type="text" id="task-input" class="form-input" placeholder="e.g. Read lecture 5 parser notes" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="task-category" class="form-label">Category</label>
+                                <select id="task-category" class="form-input">
+                                    <option value="Academic">Academic</option>
+                                    <option value="Lab Project">Lab Project</option>
+                                    <option value="Exam Prep">Exam Prep</option>
+                                    <option value="Personal">Personal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="task-priority" class="form-label">Priority</label>
+                                <select id="task-priority" class="form-input">
+                                    <option value="High">High</option>
+                                    <option value="Medium" selected>Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="button" id="add-task-btn" class="btn btn-primary w-full">Add Task to Board</button>
+                    </form>
+
+                    <div class="planner-info-footer">
+                        <p class="info-text">Tasks are held in an in-memory javascript state list with instant reactivity.</p>
+                    </div>
+                </div>
+
+                <!-- Right Control: List Display Panel -->
+                <div class="planner-list-panel glass-panel">
+                    <div class="panel-header-row">
+                        <h3 class="subsection-title">Active Scheduler Board</h3>
+                        <div class="list-stats">
+                            <span class="stat-badge">Total Tasks: <strong id="total-count">0</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- EMPTY CONTAINER LIST ELEMENT -->
+                    <ul id="task-list" class="task-list-container">
+                        <!-- Dynamic list elements will be added here by planner.js -->
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="main-footer anim-fade">
+        <div class="footer-container">
+            <span class="footer-copy">© 2026 Bankole Olaoluwa. All rights reserved. Course Project Submission.</span>
+            <div class="footer-meta">COS 106 • Value: 20 Marks</div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PLANNER SCRIPT -->
+    <script src="js/planner.js"></script>
+    <!-- GSAP ENGINE CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- CUSTOM GSAP ANIMATIONS SCRIPT -->
+    <script src="js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Portfolio | Bankole Olaoluwa</title>
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- LOOPED VIDEO BACKGROUND LAYER -->
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="main-header anim-fade">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-icon">✦</div>
+                <div class="logo-text">
+                    <span class="student-name">BANKOLE OLAOLUWA</span>
+                    <span class="course-code">COS 106 Project</span>
+                </div>
+            </div>
+            
+            <nav class="nav-bar">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Me</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="planner.html" class="nav-link">Planner</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN PROJECTS GRID CONTENT -->
+    <main class="main-content">
+        <div class="projects-container">
+            <div class="section-title-wrapper text-center anim-fade">
+                <span class="welcome-badge">CSS GRID LAYOUT PORTFOLIO</span>
+                <h2 class="section-title">Academic & Lab Projects</h2>
+                <p class="section-intro">Explore a responsive list of engineering applications, featuring live simulated dynamic alerts.</p>
+            </div>
+
+            <!-- RESPONSIVE CSS GRID -->
+            <div class="projects-grid anim-stagger">
+                
+                <!-- Project Card 1 -->
+                <div class="project-card glass-card">
+                    <div class="project-image-placeholder">
+                        <svg viewBox="0 0 100 100" class="card-svg">
+                            <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="18" fill="none" stroke="currentColor" stroke-dasharray="4 2" stroke-width="1.5"/>
+                            <polygon points="50,42 58,54 42,54" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="project-details">
+                        <span class="proj-category">AI & WORKFLOW AUTOMATION</span>
+                        <h3 class="proj-title">AI Workflow Automation System</h3>
+                        <p class="proj-desc">
+                            Automating business operations, customer engagement models, and optimizing runtime workflows using visual agentic pipelines.
+                        </p>
+                        <div class="proj-actions">
+                            <button onclick="simulateProject('AI Workflow Automation System')" class="btn btn-sm btn-primary">Run Simulation</button>
+                            <a href="#" onclick="alert('Viewing repository codebase partition.'); return false;" class="proj-link">Code Repository ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card glass-card">
+                    <div class="project-image-placeholder">
+                        <svg viewBox="0 0 100 100" class="card-svg">
+                            <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="25" y1="35" x2="75" y2="35" stroke="currentColor" stroke-width="2"/>
+                            <line x1="25" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2"/>
+                            <line x1="25" y1="65" x2="55" y2="65" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="project-details">
+                        <span class="proj-category">FULL-STACK WEBSITES</span>
+                        <h3 class="proj-title">Healthcare & E-Commerce Web Platforms</h3>
+                        <p class="proj-desc">
+                            Full-stack web applications integrated with dynamic admin dashboards, custom REST APIs, and secure JWT-based authentication layers.
+                        </p>
+                        <div class="proj-actions">
+                            <button onclick="simulateProject('Healthcare & E-Commerce Web Platforms')" class="btn btn-sm btn-primary">Run Simulation</button>
+                            <a href="#" onclick="alert('Viewing repository codebase partition.'); return false;" class="proj-link">Code Repository ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card glass-card">
+                    <div class="project-image-placeholder">
+                        <svg viewBox="0 0 100 100" class="card-svg">
+                            <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <rect x="30" y="30" width="40" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="project-details">
+                        <span class="proj-category">DIGITAL LEARNING PLATFORM</span>
+                        <h3 class="proj-title">Multimedia Instructional Interface</h3>
+                        <p class="proj-desc">
+                            Interactive digital media learning platform designed with optimized video delivery networks and instructional scaffolding pipelines.
+                        </p>
+                        <div class="proj-actions">
+                            <button onclick="simulateProject('Multimedia Instructional Interface')" class="btn btn-sm btn-primary">Run Simulation</button>
+                            <a href="#" onclick="alert('Viewing repository codebase partition.'); return false;" class="proj-link">Code Repository ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="main-footer anim-fade">
+        <div class="footer-container">
+            <span class="footer-copy">© 2026 Bankole Olaoluwa. All rights reserved. Course Project Submission.</span>
+            <div class="footer-meta">COS 106 • Value: 20 Marks</div>
+        </div>
+    </footer>
+
+    <!-- INLINE SIMULATION HANDLER -->
+    <script>
+        function simulateProject(title) {
+            alert("SUCCESS: Simulating initialization for the '" + title + "' package on state-thread sandbox. Running 10 modular matrix checks... OK! (Pass Rate: 100% in 18ms)");
+        }
+    </script>
+    <!-- GSAP ENGINE CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- CUSTOM GSAP ANIMATIONS SCRIPT -->
+    <script src="js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Academic Portfolio",
+  "description": "A highly responsive student portfolio and academic management website with a glassmorphism theme and custom planner.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

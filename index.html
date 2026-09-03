@@ -15,6 +15,7 @@
           'safari-extension',
           'please report this bug'
         ];
+
         function shouldSuppress(str) {
           if (!str) return false;
           var s = String(str).toLowerCase();
@@ -22,6 +23,7 @@
             return s.indexOf(pattern) !== -1;
           });
         }
+
         function checkAny(val) {
           if (!val) return false;
           if (typeof val === 'string') return shouldSuppress(val);
@@ -31,9 +33,16 @@
             if (shouldSuppress(val.name)) return true;
             if (shouldSuppress(val.reason)) return true;
             if (shouldSuppress(String(val))) return true;
-          } catch(e) {}
+            for (var key in val) {
+              if (Object.prototype.hasOwnProperty.call(val, key)) {
+                var propVal = val[key];
+                if (typeof propVal === 'string' && shouldSuppress(propVal)) return true;
+              }
+            }
+          } catch (e) {}
           return false;
         }
+
         function makeSafeLogger(originalLogger) {
           return function() {
             for (var i = 0; i < arguments.length; i++) {
@@ -42,8 +51,17 @@
             if (originalLogger) originalLogger.apply(console, arguments);
           };
         }
+
         console.error = makeSafeLogger(console.error);
         console.warn = makeSafeLogger(console.warn);
+        console.log = makeSafeLogger(console.log);
+        console.info = makeSafeLogger(console.info);
+        console.debug = makeSafeLogger(console.debug);
+
+        window.onerror = function(message, source, lineno, colno, error) {
+          if (checkAny(message) || checkAny(source) || checkAny(error)) return true;
+        };
+
         window.addEventListener('unhandledrejection', function(event) {
           if (checkAny(event.reason)) {
             event.stopImmediatePropagation();
@@ -57,9 +75,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Bankole Olaoluwa — Founder, AI Product Builder and Enterprise Automation Strategist. Founder of Apex Sync and builder of APEX ONE."
+      content="Bankole Olaoluwa — Founder, Full-Stack Developer, AI Product Builder and Enterprise Automation Strategist. Founder of Apex Sync and builder of APEX ONE."
     />
-    <title>Bankole Olaoluwa | Founder & AI Product Builder</title>
+    <title>Bankole Olaoluwa | Founder & Full-Stack Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +101,7 @@
         <div class="logo-container">
           <div>
             <div class="logo-text">BANKOLE OLAOLUWA</div>
-            <div class="logo-sub">FOUNDER • AI PRODUCT BUILDER</div>
+            <div class="logo-sub">FOUNDER • FULL-STACK DEVELOPER • AI PRODUCT BUILDER</div>
           </div>
         </div>
 
@@ -104,6 +122,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
             Intelligence
           </button>
+          <a class="nav-button" href="/articles.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+            Articles
+          </a>
           <button class="nav-button" data-tab="contact">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             Contact
@@ -124,6 +146,7 @@
           <button class="mobile-nav-button" data-tab="about">About</button>
           <button class="mobile-nav-button" data-tab="projects">Work</button>
           <button class="mobile-nav-button" data-tab="planner">Intelligence</button>
+          <a class="mobile-nav-button" href="/articles.html">Articles</a>
           <button class="mobile-nav-button" data-tab="contact">Contact</button>
         </div>
       </nav>
@@ -146,7 +169,7 @@
               </h1>
               <div class="narrative-header-meta">
                 <p class="narrative-headline">
-                  Founder, AI Product Builder &amp; Enterprise Automation Strategist building intelligent systems at the intersection of AI, enterprise software and business operations.
+                  Founder, Full-Stack Developer, AI Product Builder &amp; Enterprise Automation Strategist building intelligent systems at the intersection of AI, enterprise software and business operations.
                 </p>
               </div>
             </div>
@@ -160,7 +183,7 @@
                   </p>
                 </div>
                 <p class="body-p">
-                  My work spans AI, product design, automation and enterprise software. I am currently focused on building Apex Sync and its flagship product, APEX ONE.
+                  My work spans full-stack software development, AI, product design, automation and enterprise software. I am currently focused on building Apex Sync and its flagship product, APEX ONE.
                 </p>
                 <p class="body-p">
                   My background across software, automation, digital media and creative production shapes how I build: I care about both how systems work and how people experience them.
@@ -226,7 +249,7 @@
         <div class="about-summary-quote">
           <h3>About Bankole Olaoluwa</h3>
           <p>
-            I am a technology entrepreneur and product builder focused on artificial intelligence, enterprise automation and intelligent software systems. My work sits at the intersection of technology, business operations, product strategy and design. Today, I am building Apex Sync and APEX ONE with a long-term focus on helping organizations move from fragmented tools and workflows toward intelligent, connected operations.
+            I am a technology entrepreneur, full-stack developer and product builder focused on artificial intelligence, enterprise automation and intelligent software systems. My work sits at the intersection of software engineering, technology, business operations, product strategy and design. Today, I am building Apex Sync and APEX ONE with a long-term focus on helping organizations move from fragmented tools and workflows toward intelligent, connected operations.
           </p>
         </div>
 
@@ -247,12 +270,12 @@
           </div>
 
           <div class="skills-category-card">
-            <h4>Product &amp; Software</h4>
+            <h4>Full-Stack Development &amp; Product</h4>
             <div class="skills-badges-wrap">
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Product Strategy</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Product Prototyping</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>Web Application Development</div>
-              <div class="skill-badge"><span class="skill-badge-dot"></span>UX &amp; Systems Thinking</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Full-Stack Web Development</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Front-End &amp; Back-End Development</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>APIs, Databases &amp; Integrations</div>
+              <div class="skill-badge"><span class="skill-badge-dot"></span>Product Strategy &amp; Prototyping</div>
             </div>
           </div>
 
@@ -300,12 +323,12 @@
           <div class="timeline-item">
             <div class="timeline-bullet"></div>
             <div class="timeline-header">
-              <h3 class="timeline-title">Software &amp; AI Automation Projects</h3>
+              <h3 class="timeline-title">Full-Stack Developer &amp; AI Automation Builder</h3>
               <span class="timeline-period">2025 – PRESENT</span>
             </div>
             <div class="timeline-company">Independent Builds</div>
             <ul class="timeline-bullets">
-              <li>Built responsive web applications, interactive experiences and AI-powered workflow automations.</li>
+              <li>Built responsive full-stack web applications, interactive experiences and AI-powered workflow automations.</li>
               <li>Worked with APIs, webhooks, front-end systems and automation logic across client and personal projects.</li>
             </ul>
           </div>
@@ -387,7 +410,8 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span class="btn-github-link" style="pointer-events:none;">Currently Building</span>
+              <a href="https://apexone-mvp.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">View APEX ONE Prototype</a>
+              <a href="https://apex-sync-intelligence.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-github-link">Visit Apex Sync</a>
             </div>
           </div>
 
@@ -406,6 +430,9 @@
                 <span class="project-tech-tag">Enterprise Software</span>
               </div>
             </div>
+            <div class="project-card-footer">
+              <a href="https://apex-sync-intelligence.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-visit-project">Visit Apex Sync</a>
+            </div>
           </div>
 
           <div class="project-card">
@@ -422,6 +449,9 @@
                 <span class="project-tech-tag">Systems Thinking</span>
                 <span class="project-tech-tag">Thought Leadership</span>
               </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="/articles.html" class="btn-visit-project">Read My Articles</a>
             </div>
           </div>
         </div>
@@ -538,6 +568,9 @@
                 <span class="project-tech-tag">Research</span>
               </div>
             </div>
+            <div class="project-card-footer">
+              <a href="/articles.html" class="btn-visit-project">Explore Articles</a>
+            </div>
           </div>
 
           <div class="project-card">
@@ -579,9 +612,22 @@
 
         <div class="about-summary-quote" style="margin-top:3rem;">
           <h3>Let's Build Something Meaningful.</h3>
-          <p>
-            Contact details and social links will be added in the next portfolio pass. For now, this section is intentionally reserved while the core personal brand and project narrative are being finalized.
-          </p>
+          <p>I'm open to conversations around full-stack development, AI products, enterprise systems, partnerships and ambitious technology projects.</p>
+        </div>
+
+        <div class="credentials-stack" style="margin-top:2rem;">
+          <a class="bento-card" href="mailto:olaoluwabankole3@gmail.com" style="text-decoration:none;">
+            <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div class="bento-card-meta"><span class="meta-label">EMAIL</span><span class="meta-title">olaoluwabankole3@gmail.com</span><span class="meta-desc">Product, development and collaboration enquiries.</span></div>
+          </a>
+          <a class="bento-card" href="tel:+2349020018039" style="text-decoration:none;">
+            <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="bento-card-meta"><span class="meta-label">PHONE</span><span class="meta-title">0902 001 8039</span><span class="meta-desc">Nigeria • +234 902 001 8039</span></div>
+          </a>
+          <a class="bento-card" href="https://apex-sync-intelligence.pages.dev/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+            <svg class="bento-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+            <div class="bento-card-meta"><span class="meta-label">COMPANY</span><span class="meta-title">Apex Sync</span><span class="meta-desc">Visit the Apex Sync website.</span></div>
+          </a>
         </div>
       </section>
     </main>
@@ -590,7 +636,7 @@
       <div class="max-width-7xl glass-panel" style="border-radius:1rem;padding:1.5rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
         <div>
           <div class="logo-text">BANKOLE OLAOLUWA</div>
-          <div class="logo-sub">FOUNDER • AI PRODUCT BUILDER • ENTERPRISE INTELLIGENCE</div>
+          <div class="logo-sub">FOUNDER • FULL-STACK DEVELOPER • AI PRODUCT BUILDER</div>
         </div>
         <div class="logo-sub">BUILDING APEX SYNC / APEX ONE</div>
       </div>

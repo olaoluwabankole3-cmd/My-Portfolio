@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Articles and ideas by Bankole Olaoluwa on enterprise intelligence, AI, operating systems, business architecture and technology." />
+    <title>Articles | Bankole Olaoluwa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+
+    <style>
+      .articles-hero { padding-top: 5rem; padding-bottom: 2rem; }
+      .articles-kicker { font-family: var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--color-gold-brand); font-size: .78rem; font-weight: 700; }
+      .articles-title { margin: .8rem 0 1rem; font-family: var(--font-display); font-size: clamp(2.8rem, 8vw, 6.8rem); line-height: .9; letter-spacing: -.055em; color: #fff; }
+      .articles-intro { max-width: 760px; color: rgba(255,255,255,.72); font-size: 1.08rem; line-height: 1.8; }
+      .articles-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.5rem; margin-top: 2rem; padding-bottom: 5rem; }
+      .article-card { overflow: hidden; border-radius: 1rem; border: 1px solid rgba(255,255,255,.10); background: rgba(11,11,11,.72); backdrop-filter: blur(18px); display: flex; flex-direction: column; min-height: 100%; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+      .article-card:hover { transform: translateY(-4px); border-color: rgba(196,145,34,.55); box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+      .article-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #161616; }
+      .article-cover img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.72) contrast(1.05) brightness(.78); transform: scale(1.002); transition: transform .5s ease, filter .5s ease; }
+      .article-card:hover .article-cover img { transform: scale(1.04); filter: saturate(.92) contrast(1.06) brightness(.84); }
+      .article-cover::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 28%, rgba(0,0,0,.08) 52%, rgba(0,0,0,.82) 100%); pointer-events:none; }
+      .article-cover-meta { position:absolute; z-index:2; left:1.2rem; right:1.2rem; bottom:1.1rem; display:flex; align-items:end; justify-content:space-between; gap:1rem; }
+      .article-cover-label { font-family:var(--font-mono); color:#fff; letter-spacing:.12em; font-size:.68rem; font-weight:700; text-transform:uppercase; }
+      .article-cover-number { font-family:var(--font-mono); color:var(--color-gold-brand); font-size:.72rem; }
+      .article-body { padding: 1.45rem; display:flex; flex-direction:column; flex:1; }
+      .article-category { color: var(--color-gold-brand); font-family:var(--font-mono); letter-spacing:.09em; font-size:.67rem; font-weight:700; text-transform:uppercase; }
+      .article-title { margin:.65rem 0 .75rem; color:#fff; font-family:var(--font-display); font-size:1.45rem; line-height:1.18; letter-spacing:-.025em; }
+      .article-desc { color:rgba(255,255,255,.62); line-height:1.7; font-size:.94rem; margin:0 0 1.4rem; }
+      .article-actions { margin-top:auto; display:flex; gap:.8rem; flex-wrap:wrap; }
+      .article-note { margin: 0 0 2rem; color: rgba(255,255,255,.5); font-size:.84rem; font-family:var(--font-mono); }
+      .page-back { text-decoration:none; }
+      @media (max-width: 800px) { .articles-grid { grid-template-columns: 1fr; } .articles-hero { padding-top: 3rem; } }
+    </style>
+  </head>
+
+  <body>
+    <div class="background-video-container">
+      <video autoplay loop muted playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="overlay-top"></div>
+    <div class="overlay-bottom"></div>
+
+    <header class="header">
+      <div class="header-container max-width-7xl px-4 px-sm-6 px-lg-8">
+        <div class="logo-container">
+          <div>
+            <div class="logo-text">BANKOLE OLAOLUWA</div>
+            <div class="logo-sub">IDEAS • ARTICLES • ENTERPRISE INTELLIGENCE</div>
+          </div>
+        </div>
+
+        <nav class="desktop-nav">
+          <a class="nav-button page-back" href="/">Home</a>
+          <a class="nav-button page-back" href="https://apex-sync-intelligence.pages.dev/" target="_blank" rel="noopener noreferrer">Apex Sync</a>
+          <a class="nav-button page-back" href="https://apexone-mvp.netlify.app/" target="_blank" rel="noopener noreferrer">APEX ONE</a>
+          <a class="nav-button active page-back" href="/articles.html">Articles</a>
+          <a class="nav-button page-back" href="mailto:olaoluwabankole3@gmail.com">Contact</a>
+        </nav>
+
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <button id="mobile-menu-trigger" class="mobile-nav-trigger" aria-label="Toggle Navigation Menu">
+            <svg id="menu-icon-hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            <svg id="menu-icon-close" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <nav id="mobile-menu" class="mobile-nav-dropdown">
+        <div class="mobile-nav-dropdown-content">
+          <a class="mobile-nav-button" href="/">Home</a>
+          <a class="mobile-nav-button" href="https://apex-sync-intelligence.pages.dev/" target="_blank" rel="noopener noreferrer">Apex Sync</a>
+          <a class="mobile-nav-button" href="https://apexone-mvp.netlify.app/" target="_blank" rel="noopener noreferrer">APEX ONE</a>
+          <a class="mobile-nav-button active" href="/articles.html">Articles</a>
+          <a class="mobile-nav-button" href="mailto:olaoluwabankole3@gmail.com">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tab-content active py-10 px-4 px-sm-6 px-lg-8 max-width-6xl">
+        <div class="articles-hero">
+          <div class="articles-kicker">Selected Writing / Ideas</div>
+          <h1 class="articles-title">ENTERPRISE<br>INTELLIGENCE</h1>
+          <p class="articles-intro">
+            Essays on AI-native organizations, enterprise operating systems, organizational architecture, business friction and the systems that shape how modern companies think, decide and execute.
+          </p>
+        </div>
+
+        <div class="about-summary-quote" style="margin-bottom:2rem;">
+          <h3>Writing as Product Thinking</h3>
+          <p>These articles are where I develop the ideas behind my work at Apex Sync and APEX ONE — not only what technology can automate, but how intelligent systems can reshape the way organizations operate.</p>
+        </div>
+
+        <div class="articles-grid">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=82" alt="AI and technology workspace" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">The Future of Enterprise Intelligence</span><span class="article-cover-number">01</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Enterprise Intelligence Series</span>
+              <h2 class="article-title">The Rise of Executive AI</h2>
+              <p class="article-desc">A look at how AI is moving beyond departmental tools toward a decision-support layer for executives and the enterprise itself.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://www.linkedin.com/pulse/rise-executive-ai-olaoluwa-bankole-uomre" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=82" alt="Connected digital systems" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">Enterprise Operating Systems</span><span class="article-cover-number">02</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Enterprise Intelligence Series</span>
+              <h2 class="article-title">Why Every Organization Will Need an Enterprise Operating System Within the Next Decade</h2>
+              <p class="article-desc">Why the next generation of organizations will need a connected operating layer that unifies context, workflows, intelligence and execution.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://www.linkedin.com/pulse/why-every-organization-need-enterprise-operating-system-bankole-kg6oe" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1400&q=82" alt="Law books in a legal workspace" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">Legal Operations</span><span class="article-cover-number">03</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Business Systems</span>
+              <h2 class="article-title">Law Firms Don't Have a Technology Problem. They Have a Time Problem.</h2>
+              <p class="article-desc">An exploration of the operational friction hidden inside legal work — and why the biggest opportunity is often time, coordination and repeatable systems.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://www.linkedin.com/pulse/biggest-bottleneck-most-law-firms-isnt-what-you-think-bankole-rqvif" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=82" alt="Growing company team collaborating" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">Scaling Organizations</span><span class="article-cover-number">04</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Business Architecture</span>
+              <h2 class="article-title">The Biggest Bottleneck in Every Growing Company Isn't Money.</h2>
+              <p class="article-desc">Why growth eventually becomes an architecture problem: information flow, coordination, decision-making and the systems connecting a growing organization.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://www.linkedin.com/pulse/biggest-bottleneck-every-growing-company-isnt-money-olaoluwa-bankole-qwcrf" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=82" alt="Modern enterprise office" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">Featured Essay</span><span class="article-cover-number">05</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Enterprise Intelligence</span>
+              <h2 class="article-title">Featured Enterprise Intelligence Essay I</h2>
+              <p class="article-desc">A selected essay from my wider writing on intelligent organizations, operational architecture and the future of enterprise technology.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://lnkd.in/p/eF2zUUGN" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=82" alt="Business strategy discussion" loading="lazy">
+              <div class="article-cover-meta"><span class="article-cover-label">Featured Essay</span><span class="article-cover-number">06</span></div>
+            </div>
+            <div class="article-body">
+              <span class="article-category">Enterprise Intelligence</span>
+              <h2 class="article-title">Featured Enterprise Intelligence Essay II</h2>
+              <p class="article-desc">A selected essay examining how strategy, systems and organizational intelligence come together in modern enterprise operations.</p>
+              <div class="article-actions"><a class="btn-visit-project" href="https://lnkd.in/p/ewVZmUSs" target="_blank" rel="noopener noreferrer">Read Article</a></div>
+            </div>
+          </article>
+        </div>
+
+        <p class="article-note">Note: the two LinkedIn short links are displayed as featured essays until their full public article titles and original cover assets are available for direct use.</p>
+      </section>
+    </main>
+
+    <footer class="px-4 px-sm-6 px-lg-8" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="max-width-7xl glass-panel" style="border-radius:1rem;padding:1.5rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <div class="logo-text">BANKOLE OLAOLUWA</div>
+          <div class="logo-sub">FOUNDER • FULL-STACK DEVELOPER • AI PRODUCT BUILDER</div>
+        </div>
+        <div class="logo-sub">ARTICLES / ENTERPRISE INTELLIGENCE</div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

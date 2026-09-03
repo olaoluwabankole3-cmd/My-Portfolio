@@ -148,6 +148,13 @@ function initNavigation() {
   if (mobileMenuTrigger) {
     mobileMenuTrigger.addEventListener("click", toggleMobileMenu);
   }
+
+  // Support direct links from standalone pages such as Articles.
+  // Example: /?tab=contact opens the Contact section immediately.
+  const requestedTab = new URLSearchParams(window.location.search).get("tab");
+  if (requestedTab && document.getElementById(`tab-${requestedTab}`)) {
+    switchTab(requestedTab);
+  }
 }
 
 // ============================================================================

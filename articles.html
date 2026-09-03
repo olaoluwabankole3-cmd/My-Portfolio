@@ -20,9 +20,9 @@
       .article-card { overflow: hidden; border-radius: 1rem; border: 1px solid rgba(255,255,255,.10); background: rgba(11,11,11,.72); backdrop-filter: blur(18px); display: flex; flex-direction: column; min-height: 100%; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
       .article-card:hover { transform: translateY(-4px); border-color: rgba(196,145,34,.55); box-shadow: 0 24px 70px rgba(0,0,0,.35); }
       .article-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #161616; }
-      .article-cover img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.72) contrast(1.05) brightness(.78); transform: scale(1.002); transition: transform .5s ease, filter .5s ease; }
-      .article-card:hover .article-cover img { transform: scale(1.04); filter: saturate(.92) contrast(1.06) brightness(.84); }
-      .article-cover::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 28%, rgba(0,0,0,.08) 52%, rgba(0,0,0,.82) 100%); pointer-events:none; }
+      .article-cover img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transform: scale(1.002); transition: transform .5s ease; }
+      .article-card:hover .article-cover img { transform: scale(1.025); filter: none; }
+      .article-cover::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 76%, rgba(0,0,0,.18) 100%); pointer-events:none; }
       .article-cover-meta { position:absolute; z-index:2; left:1.2rem; right:1.2rem; bottom:1.1rem; display:flex; align-items:end; justify-content:space-between; gap:1rem; }
       .article-cover-label { font-family:var(--font-mono); color:#fff; letter-spacing:.12em; font-size:.68rem; font-weight:700; text-transform:uppercase; }
       .article-cover-number { font-family:var(--font-mono); color:var(--color-gold-brand); font-size:.72rem; }
@@ -100,8 +100,7 @@
         <div class="articles-grid">
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=82" alt="AI and technology workspace" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">The Future of Enterprise Intelligence</span><span class="article-cover-number">01</span></div>
+              <img src="/assets/articles/executive-ai.webp" alt="The Rise of Executive AI — Apex Sync article cover" loading="lazy">
             </div>
             <div class="article-body">
               <span class="article-category">Enterprise Intelligence Series</span>
@@ -113,8 +112,7 @@
 
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=82" alt="Connected digital systems" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">Enterprise Operating Systems</span><span class="article-cover-number">02</span></div>
+              <img src="/assets/articles/enterprise-operating-system.webp" alt="Enterprise Operating System Within the Next Decade — Apex Sync article cover" loading="lazy">
             </div>
             <div class="article-body">
               <span class="article-category">Enterprise Intelligence Series</span>
@@ -126,8 +124,7 @@
 
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1400&q=82" alt="Law books in a legal workspace" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">Legal Operations</span><span class="article-cover-number">03</span></div>
+              <img src="/assets/articles/law-firms-time.webp" alt="Law, time and legal operations article cover with scales, hourglass and barrister wig" loading="lazy">
             </div>
             <div class="article-body">
               <span class="article-category">Business Systems</span>
@@ -139,8 +136,7 @@
 
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=82" alt="Growing company team collaborating" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">Scaling Organizations</span><span class="article-cover-number">04</span></div>
+              <img src="/assets/articles/growing-company-bottleneck.webp" alt="Growing company bottleneck article cover with organizational intelligence visual" loading="lazy">
             </div>
             <div class="article-body">
               <span class="article-category">Business Architecture</span>
@@ -152,21 +148,19 @@
 
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=82" alt="Modern enterprise office" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">Featured Essay</span><span class="article-cover-number">05</span></div>
+              <img src="/assets/articles/every-industry-rebuilt-by-ai.webp" alt="How Every Industry Will Be Rebuilt by AI — article cover" loading="lazy">
             </div>
             <div class="article-body">
-              <span class="article-category">Enterprise Intelligence</span>
-              <h2 class="article-title">Featured Enterprise Intelligence Essay I</h2>
-              <p class="article-desc">A selected essay from my wider writing on intelligent organizations, operational architecture and the future of enterprise technology.</p>
+              <span class="article-category">AI &amp; Industry</span>
+              <h2 class="article-title">How Every Industry Will Be Rebuilt by AI</h2>
+              <p class="article-desc">A forward-looking essay on how intelligence-first systems could reshape healthcare, education, finance, manufacturing, government and logistics.</p>
               <div class="article-actions"><a class="btn-visit-project" href="https://lnkd.in/p/eF2zUUGN" target="_blank" rel="noopener noreferrer">Read Article</a></div>
             </div>
           </article>
 
           <article class="article-card">
             <div class="article-cover">
-              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=82" alt="Business strategy discussion" loading="lazy">
-              <div class="article-cover-meta"><span class="article-cover-label">Featured Essay</span><span class="article-cover-number">06</span></div>
+              <img src="/assets/articles/connected-enterprise.webp" alt="Enterprise intelligence and connected city article cover" loading="lazy">
             </div>
             <div class="article-body">
               <span class="article-category">Enterprise Intelligence</span>
@@ -176,8 +170,6 @@
             </div>
           </article>
         </div>
-
-        <p class="article-note">The current images are editorial portfolio covers selected to match each article topic. They can be replaced one-for-one with your original LinkedIn cover images when you provide those image files. The two lnkd.in short links are also labeled as featured essays until their full public titles are available.</p>
       </section>
     </main>
 

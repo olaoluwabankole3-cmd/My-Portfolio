@@ -171,10 +171,10 @@ function initCanvasReveal() {
   const maskCanvas = document.createElement("canvas");
   const maskCtx = maskCanvas.getContext("2d");
 
-  // Load the original photograph that is revealed through the illustrated portrait
+  // Load the cartoon portrait as the top layer; the lens cuts through it to reveal the original photo beneath
   const imgOverlay = new Image();
   imgOverlay.crossOrigin = "anonymous";
-  imgOverlay.src = "https://lh3.googleusercontent.com/d/1yj2N70l_inwTtpQ5egl17wM1CKPsqsXx";
+  imgOverlay.src = "https://lh3.googleusercontent.com/d/1R5Yodqa0utrQ2LgkoHNMP_1nLbXzC_8i";
 
   // Initializing 7 blobs with physics constants to trail and blend organically
   const blobs = [
@@ -375,7 +375,7 @@ function initCanvasReveal() {
           mainCtx.drawImage(imgOverlay, drawX, drawY, drawWidth, drawHeight);
 
           // Mask with offscreen canvas metaballs
-          mainCtx.globalCompositeOperation = "destination-in";
+          mainCtx.globalCompositeOperation = "destination-out";
           mainCtx.drawImage(maskCanvas, 0, 0, width, height);
           mainCtx.globalCompositeOperation = "source-over";
         }

@@ -2215,3 +2215,119 @@ footer .glass-panel{background:transparent;border-color:#d8d0c3}
 footer .logo-sub{color:#69665f}
 a{ text-underline-offset:.2em }
 a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3px}
+
+
+/* Editorial refinement: reduce boxed text and decorative UI chrome.
+   Keep project imagery, interactive portrait, section order and motion intact. */
+.about-header.glass-panel,
+.projects-header.glass-panel {
+  padding: 0 !important;
+  margin-bottom: 2.5rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.about-header.glass-panel h2,
+.projects-header.glass-panel h2 {
+  margin-bottom: .35rem;
+}
+.bento-card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding: 1.15rem 0;
+  box-shadow: none;
+}
+.bento-card:last-child { border-bottom: 0; }
+.bento-card:hover {
+  background: transparent;
+  border-color: #b9a58f;
+  transform: translateX(2px);
+}
+.process-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  box-shadow: none;
+}
+.process-card:hover {
+  background: transparent;
+  border-color: #a65a2e;
+  transform: translateY(-2px);
+}
+.skills-category-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.skill-badge {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .2rem .35rem .2rem 0;
+  color: #57544d;
+}
+.skill-badge-dot { width: 5px; height: 5px; }
+.project-category-badge {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  letter-spacing: .06em;
+}
+.project-tech-tag {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .15rem .55rem .15rem 0;
+  color: #69665f;
+}
+.project-tech-tag:not(:last-child)::after {
+  content: "·";
+  color: #a65a2e;
+  margin-left: .55rem;
+}
+.project-card,
+.case-study-card {
+  box-shadow: none;
+}
+.case-study-card {
+  border-radius: .25rem;
+}
+.case-study-card.case-study-featured {
+  border-width: 1px 0;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card {
+  border-radius: .25rem;
+}
+.project-card .project-badge-wrap { margin-bottom: .9rem; }
+.timeline-period {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .15rem 0;
+  letter-spacing: .02em;
+}
+.about-summary-quote {
+  background: transparent;
+  border-left: 2px solid #a65a2e;
+  border-radius: 0;
+  padding: .35rem 0 .35rem 1.25rem;
+}
+.glass-panel,
+.glass-card {
+  box-shadow: none;
+}

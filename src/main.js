@@ -5,7 +5,7 @@
 function startApp() {
   initClock();
   initNavigation();
-  // The portfolio uses a static portrait in the editorial redesign; skip the legacy animated canvas.
+  initCanvasReveal();
 }
 
 if (document.readyState === "loading") {

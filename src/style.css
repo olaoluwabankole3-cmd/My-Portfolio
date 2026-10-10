@@ -2151,3 +2151,449 @@ body {
     font-size: clamp(2.5rem, 16vw, 4rem);
   }
 }
+
+/* Independent developer palette — preserve original layout and animations */
+:root {
+  --color-gold-brand:#a65a2e;
+  --color-gold-brand-hover:#874522;
+  --bg-slate-950:#f5f1e8;
+  --bg-slate-900:#ebe5da;
+  --text-slate-100:#24231f;
+  --text-slate-200:#34322d;
+  --text-slate-300:#45423b;
+  --text-slate-400:#69665f;
+  --text-slate-500:#817b70;
+  --font-display:"Inter",system-ui,sans-serif;
+}
+body{background:#f5f1e8;color:#34322d}
+.header{background:rgba(245,241,232,.97);border-bottom-color:#d8d0c3}
+.logo-text{background:none;color:#24231f;-webkit-text-fill-color:currentColor}
+.logo-sub{color:#69665f}
+.nav-button{color:#57544d}
+.nav-button:hover{color:#24231f}
+.nav-button.active{color:#a65a2e}
+.mobile-nav-trigger{color:#24231f;background:#f5f1e8;border-color:#d8d0c3}
+.mobile-nav-dropdown{background:#f5f1e8;border-color:#d8d0c3}
+.mobile-nav-button{color:#45423b}
+.mobile-nav-button.active{color:#a65a2e;background:#ebe5da;border-left-color:#a65a2e}
+.narrative-section{background:#f5f1e8}
+.brand-first-name{color:#24231f}
+.brand-last-name{color:#a65a2e}
+.hero-role-kicker,.summary-label,.academic-credentials-title,.section-headline,.process-index,.case-study-block span{color:#a65a2e}
+.narrative-headline{color:#24231f}
+.hero-capability-line{color:#69665f}
+.lead-p{color:#45423b}
+.body-p{color:#69665f}
+.bento-card,.project-card,.case-study-card,.process-card,.skills-category-card{background:#eee8dd;border-color:#d8d0c3}
+.bento-card:hover,.project-card:hover,.process-card:hover{border-color:#b9a58f}
+.bento-card-icon{color:#a65a2e}
+.bento-card-meta .meta-label{color:#817b70}
+.bento-card-meta .meta-title{color:#24231f}
+.bento-card-meta .meta-desc{color:#69665f}
+.btn-primary,.btn-visit-project,.btn-form-submit,.btn-contact-submit{background:#24231f;color:#f5f1e8;border-color:#24231f}
+.btn-primary:hover,.btn-visit-project:hover,.btn-form-submit:hover,.btn-contact-submit:hover{background:#a65a2e;color:#fffaf3;border-color:#a65a2e}
+.btn-secondary{color:#24231f;background:transparent;border-color:#b9b0a2}
+.btn-secondary:hover{background:#ebe5da}
+.process-title,.process-card h3,.case-study-header h3,.project-card-title,.timeline-title,.about-header h2,.planner-header h2,.contact-header h2,.skills-category-card h4{color:#24231f}
+.process-intro,.process-card p,.case-study-lead,.case-study-block p,.project-card-desc,.timeline-bullets li,.about-header p,.projects-header p,.planner-header p,.contact-header p{color:#69665f}
+.case-study-card.case-study-featured{border-color:#b9a58f}
+.case-study-block,.project-card-footer{border-top-color:#d8d0c3}
+.project-category-badge{color:#874522;background:#e7dfd2;border-color:#d8c8b7}
+.project-tech-tag{color:#57544d;background:#e7e0d4;border-color:#d8d0c3}
+.project-card:hover .project-card-title,.timeline-item:hover .timeline-title,.btn-github-link:hover{color:#a65a2e}
+.glass-panel,.glass-card{background:#eee8dd;border-color:#d8d0c3}
+.about-summary-quote{background:#ebe5da;border-left-color:#a65a2e}
+.about-summary-quote h3{color:#a65a2e}
+.about-summary-quote p{color:#57544d}
+.skill-badge{color:#57544d;background:transparent;border-color:#d8d0c3}
+.skill-badge-dot{background:#a65a2e}
+.timeline-list{border-left-color:#d8d0c3}
+.timeline-bullet{background:#f5f1e8;border-color:#a65a2e}
+.timeline-company{color:#69665f}
+.timeline-period{color:#874522;background:#e7dfd2}
+footer .glass-panel{background:transparent;border-color:#d8d0c3}
+footer .logo-sub{color:#69665f}
+a{ text-underline-offset:.2em }
+a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3px}
+
+
+/* Editorial refinement: reduce boxed text and decorative UI chrome.
+   Keep project imagery, interactive portrait, section order and motion intact. */
+.about-header.glass-panel,
+.projects-header.glass-panel {
+  padding: 0 !important;
+  margin-bottom: 2.5rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.about-header.glass-panel h2,
+.projects-header.glass-panel h2 {
+  margin-bottom: .35rem;
+}
+.bento-card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding: 1.15rem 0;
+  box-shadow: none;
+}
+.bento-card:last-child { border-bottom: 0; }
+.bento-card:hover {
+  background: transparent;
+  border-color: #b9a58f;
+  transform: translateX(2px);
+}
+.process-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  box-shadow: none;
+}
+.process-card:hover {
+  background: transparent;
+  border-color: #a65a2e;
+  transform: translateY(-2px);
+}
+.skills-category-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.skill-badge {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .2rem .35rem .2rem 0;
+  color: #57544d;
+}
+.skill-badge-dot { width: 5px; height: 5px; }
+.project-category-badge {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  letter-spacing: .06em;
+}
+.project-tech-tag {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .15rem .55rem .15rem 0;
+  color: #69665f;
+}
+.project-tech-tag:not(:last-child)::after {
+  content: "·";
+  color: #a65a2e;
+  margin-left: .55rem;
+}
+.project-card,
+.case-study-card {
+  box-shadow: none;
+}
+.case-study-card {
+  border-radius: .25rem;
+}
+.case-study-card.case-study-featured {
+  border-width: 1px 0;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card {
+  border-radius: .25rem;
+}
+.project-card .project-badge-wrap { margin-bottom: .9rem; }
+.timeline-period {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: .15rem 0;
+  letter-spacing: .02em;
+}
+.about-summary-quote {
+  background: transparent;
+  border-left: 2px solid #a65a2e;
+  border-radius: 0;
+  padding: .35rem 0 .35rem 1.25rem;
+}
+.glass-panel,
+.glass-card {
+  box-shadow: none;
+}
+
+.case-study-card:not(.case-study-featured) {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card:hover {
+  background: transparent;
+  border-color: #a65a2e;
+}
+
+
+/* Cross-tab palette pass: apply the same warm editorial system to Profile,
+   Work and Contact, including controls and secondary content surfaces. */
+:root {
+  --page-cream: #f5f1e8;
+  --surface-cream: #eee8dd;
+  --surface-stone: #ebe5da;
+  --ink-charcoal: #24231f;
+  --ink-body: #45423b;
+  --ink-muted: #69665f;
+  --line-stone: #d8d0c3;
+  --accent-terracotta: #a65a2e;
+}
+#tab-about,
+#tab-projects,
+#tab-contact {
+  background: var(--page-cream);
+  color: var(--ink-body);
+}
+#tab-about .section-headline,
+#tab-projects .section-headline,
+#tab-contact .section-headline {
+  color: var(--accent-terracotta);
+  border-color: var(--line-stone);
+}
+#tab-about .section-headline svg,
+#tab-projects .section-headline svg,
+#tab-contact .section-headline svg {
+  color: var(--accent-terracotta);
+}
+#tab-about .about-header,
+#tab-projects .projects-header,
+#tab-contact .contact-header {
+  background: transparent;
+  color: var(--ink-charcoal);
+  border: 0;
+  box-shadow: none;
+}
+#tab-about .about-header h2,
+#tab-projects .projects-header h2,
+#tab-contact .contact-header h2,
+#tab-about h2,
+#tab-projects h2,
+#tab-contact h2 {
+  color: var(--ink-charcoal);
+}
+#tab-about p,
+#tab-projects p,
+#tab-contact p,
+#tab-about li,
+#tab-projects li,
+#tab-contact li {
+  color: var(--ink-muted);
+}
+#tab-about .timeline-item,
+#tab-about .timeline-header,
+#tab-about .timeline-bullets {
+  color: var(--ink-body);
+}
+#tab-about .timeline-title,
+#tab-about .timeline-company {
+  color: var(--ink-charcoal);
+}
+#tab-about .timeline-company { color: var(--ink-muted); }
+#tab-about .timeline-period {
+  color: var(--accent-terracotta);
+  background: transparent;
+}
+#tab-about .timeline-list { border-left-color: var(--line-stone); }
+#tab-about .timeline-bullet {
+  background: var(--page-cream);
+  border-color: var(--accent-terracotta);
+}
+#tab-about .academic-credentials-title,
+#tab-about .skills-category-card h4 {
+  color: var(--accent-terracotta);
+}
+#tab-about .skills-category-card,
+#tab-about .bento-card,
+#tab-projects .project-card,
+#tab-projects .case-study-card,
+#tab-projects .process-card,
+#tab-contact .bento-card {
+  color: var(--ink-body);
+  background: transparent;
+  border-color: var(--line-stone);
+  box-shadow: none;
+}
+#tab-about .skills-category-card,
+#tab-about .process-card,
+#tab-projects .case-study-card,
+#tab-projects .project-card {
+  border-radius: 0;
+}
+#tab-projects .case-study-header h3,
+#tab-projects .project-card-title,
+#tab-projects .case-study-index {
+  color: var(--ink-charcoal);
+}
+#tab-projects .case-study-block {
+  border-top-color: var(--line-stone);
+}
+#tab-projects .case-study-block span,
+#tab-projects .project-category-badge {
+  color: var(--accent-terracotta);
+}
+#tab-projects .project-tech-tag {
+  color: var(--ink-muted);
+}
+#tab-contact .contact-grid-wrap {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+#tab-contact .contact-input-textarea,
+#tab-contact input,
+#tab-contact textarea,
+#tab-contact select {
+  color: var(--ink-charcoal);
+  background: #fffaf3;
+  border: 1px solid #d8d0c3;
+  border-radius: .25rem;
+  box-shadow: none;
+}
+#tab-contact .contact-input-textarea::placeholder,
+#tab-contact input::placeholder,
+#tab-contact textarea::placeholder {
+  color: #817b70;
+}
+#tab-contact .contact-input-textarea:focus,
+#tab-contact input:focus,
+#tab-contact textarea:focus,
+#tab-contact select:focus {
+  outline: 2px solid #a65a2e;
+  outline-offset: 1px;
+  border-color: #a65a2e;
+}
+#tab-contact .bento-card:hover {
+  background: transparent;
+  border-color: var(--accent-terracotta);
+}
+#tab-contact .bento-card-meta .meta-label { color: #817b70; }
+#tab-contact .bento-card-meta .meta-title { color: var(--ink-charcoal); }
+#tab-contact .bento-card-meta .meta-desc { color: var(--ink-muted); }
+#tab-about .btn-secondary,
+#tab-projects .btn-secondary,
+#tab-contact .btn-secondary,
+#tab-about .btn-github-link,
+#tab-projects .btn-github-link,
+#tab-contact .btn-github-link {
+  color: var(--ink-charcoal);
+  background: transparent;
+  border-color: #b9b0a2;
+}
+#tab-about .btn-secondary:hover,
+#tab-projects .btn-secondary:hover,
+#tab-contact .btn-secondary:hover,
+#tab-about .btn-github-link:hover,
+#tab-projects .btn-github-link:hover,
+#tab-contact .btn-github-link:hover {
+  color: var(--accent-terracotta);
+  background: var(--surface-stone);
+  border-color: var(--accent-terracotta);
+}
+#tab-about a,
+#tab-projects a,
+#tab-contact a {
+  text-underline-offset: .2em;
+}
+#tab-about a:focus-visible,
+#tab-projects a:focus-visible,
+#tab-contact a:focus-visible,
+#tab-about button:focus-visible,
+#tab-projects button:focus-visible,
+#tab-contact button:focus-visible {
+  outline: 2px solid var(--accent-terracotta);
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  #tab-about .about-header,
+  #tab-projects .projects-header,
+  #tab-contact .contact-header {
+    padding: 0 !important;
+    margin-bottom: 1.75rem;
+  }
+  #tab-about .skills-category-card,
+  #tab-projects .project-card,
+  #tab-projects .case-study-card,
+  #tab-contact .bento-card {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+/* APEX ONE case study — product model, not decorative card UI */
+#tab-projects .apex-one-case-study {
+  border-top: 1px solid #b9a58f;
+}
+#tab-projects .apex-one-loop {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .55rem .7rem;
+  margin-top: 1.6rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid #d8d0c3;
+  border-bottom: 1px solid #d8d0c3;
+  color: #24231f;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+#tab-projects .apex-one-loop i {
+  color: #a65a2e;
+  font-style: normal;
+  font-weight: 400;
+}
+#tab-projects .apex-one-stage {
+  margin: 1rem 0 0;
+  max-width: 780px;
+  color: #69665f;
+  font-size: .82rem;
+  line-height: 1.65;
+}
+#tab-projects .apex-one-stage span {
+  display: block;
+  margin-bottom: .25rem;
+  color: #a65a2e;
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  #tab-projects .apex-one-loop {
+    gap: .5rem;
+    font-size: .78rem;
+  }
+  #tab-projects .apex-one-loop i {
+    font-size: .72rem;
+  }
+}

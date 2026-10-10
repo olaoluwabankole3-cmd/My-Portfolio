@@ -171,7 +171,7 @@ function initCanvasReveal() {
   const maskCanvas = document.createElement("canvas");
   const maskCtx = maskCanvas.getContext("2d");
 
-  // Load smiling overlay image in memory
+  // Load the cartoon portrait as the top layer; the lens cuts through it to reveal the original photo beneath
   const imgOverlay = new Image();
   imgOverlay.crossOrigin = "anonymous";
   imgOverlay.src = "https://lh3.googleusercontent.com/d/1R5Yodqa0utrQ2LgkoHNMP_1nLbXzC_8i";
@@ -309,78 +309,69 @@ function initCanvasReveal() {
         }
       }
 
-      // Render masked image on main canvas if scale is active
-      if (currentScale > 0.005 && maskCtx && maskWidth > 0 && maskHeight > 0) {
-        const activeBlobs = blobs.map((b) => {
-          const r = b.radius * currentScale;
-          return {
-            x: b.x,
-            y: b.y,
-            rSq: r * r,
-          };
-        });
+      // Always draw the cartoon as the top layer. The moving metaball lens
+      // punches through it only while active, revealing the original photo below.
+      mainCtx.clearRect(0, 0, width, height);
 
-        const imgData = maskCtx.createImageData(maskWidth, maskHeight);
-        const data = imgData.data;
+      if (imgOverlay.complete && imgOverlay.naturalWidth > 0) {
+        const imgRatio = imgOverlay.naturalWidth / imgOverlay.naturalHeight;
+        const containerRatio = width / height;
+        let drawX = 0;
+        let drawY = 0;
+        let drawWidth = width;
+        let drawHeight = height;
 
-        for (let y = 0; y < maskHeight; y++) {
-          const mainY = y / MASK_SCALE;
-          for (let x = 0; x < maskWidth; x++) {
-            const mainX = x / MASK_SCALE;
-
-            let sum = 0;
-            for (let i = 0; i < activeBlobs.length; i++) {
-              const ab = activeBlobs[i];
-              const dx = mainX - ab.x;
-              const dy = mainY - ab.y;
-              const d2 = dx * dx + dy * dy;
-
-              if (d2 > 0.1) {
-                sum += ab.rSq / d2;
-              }
-            }
-
-            // Smoothstep on threshold 1.0
-            const t = (sum - 0.75) / 0.50;
-            const clamped = Math.max(0, Math.min(1, t));
-            const alpha = clamped * clamped * (3 - 2 * clamped);
-
-            const idx = (y * maskWidth + x) * 4;
-            data[idx] = 255;
-            data[idx + 1] = 255;
-            data[idx + 2] = 255;
-            data[idx + 3] = Math.floor(alpha * 255);
-          }
+        if (containerRatio > imgRatio) {
+          drawHeight = width / imgRatio;
+          drawY = (height - drawHeight) / 2;
+        } else {
+          drawWidth = height * imgRatio;
+          drawX = (width - drawWidth) / 2;
         }
-        maskCtx.putImageData(imgData, 0, 0);
 
-        mainCtx.clearRect(0, 0, width, height);
+        // The cartoon must remain visible even before the user interacts.
+        mainCtx.drawImage(imgOverlay, drawX, drawY, drawWidth, drawHeight);
 
-        if (imgOverlay.complete && imgOverlay.naturalWidth > 0) {
-          const imgRatio = imgOverlay.naturalWidth / imgOverlay.naturalHeight;
-          const containerRatio = width / height;
-          let drawX = 0;
-          let drawY = 0;
-          let drawWidth = width;
-          let drawHeight = height;
+        // Only calculate and apply the reveal mask while the lens is active.
+        if (currentScale > 0.005 && maskCtx && maskWidth > 0 && maskHeight > 0) {
+          const activeBlobs = blobs.map((b) => {
+            const r = b.radius * currentScale;
+            return { x: b.x, y: b.y, rSq: r * r };
+          });
 
-          if (containerRatio > imgRatio) {
-            drawHeight = width / imgRatio;
-            drawY = (height - drawHeight) / 2;
-          } else {
-            drawWidth = height * imgRatio;
-            drawX = (width - drawWidth) / 2;
+          const imgData = maskCtx.createImageData(maskWidth, maskHeight);
+          const data = imgData.data;
+
+          for (let y = 0; y < maskHeight; y++) {
+            const mainY = y / MASK_SCALE;
+            for (let x = 0; x < maskWidth; x++) {
+              const mainX = x / MASK_SCALE;
+              let sum = 0;
+
+              for (let i = 0; i < activeBlobs.length; i++) {
+                const ab = activeBlobs[i];
+                const dx = mainX - ab.x;
+                const dy = mainY - ab.y;
+                const d2 = dx * dx + dy * dy;
+                if (d2 > 0.1) sum += ab.rSq / d2;
+              }
+
+              const t = (sum - 0.75) / 0.50;
+              const clamped = Math.max(0, Math.min(1, t));
+              const alpha = clamped * clamped * (3 - 2 * clamped);
+              const idx = (y * maskWidth + x) * 4;
+              data[idx] = 255;
+              data[idx + 1] = 255;
+              data[idx + 2] = 255;
+              data[idx + 3] = Math.floor(alpha * 255);
+            }
           }
 
-          mainCtx.drawImage(imgOverlay, drawX, drawY, drawWidth, drawHeight);
-
-          // Mask with offscreen canvas metaballs
-          mainCtx.globalCompositeOperation = "destination-in";
+          maskCtx.putImageData(imgData, 0, 0);
+          mainCtx.globalCompositeOperation = "destination-out";
           mainCtx.drawImage(maskCanvas, 0, 0, width, height);
           mainCtx.globalCompositeOperation = "source-over";
         }
-      } else {
-        mainCtx.clearRect(0, 0, width, height);
       }
     }
 

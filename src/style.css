@@ -2331,3 +2331,24 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
 .glass-card {
   box-shadow: none;
 }
+
+.case-study-card:not(.case-study-featured) {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #d8d0c3;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.project-card:hover {
+  background: transparent;
+  border-color: #a65a2e;
+}

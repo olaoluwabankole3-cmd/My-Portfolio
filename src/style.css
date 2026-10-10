@@ -2151,3 +2151,79 @@ body {
     font-size: clamp(2.5rem, 16vw, 4rem);
   }
 }
+
+/* Independent developer redesign: warm editorial palette and calmer hierarchy */
+:root {
+  --color-gold-brand:#a65a2e; --color-gold-brand-hover:#874522;
+  --bg-slate-950:#f5f1e8; --bg-slate-900:#ebe5da;
+  --text-slate-100:#24231f; --text-slate-200:#34322d;
+  --text-slate-300:#45423b; --text-slate-400:#69665f; --text-slate-500:#817b70;
+  --font-display:"Inter",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:#f5f1e8;color:#34322d;line-height:1.65}
+.background-video-container,.overlay-top,.overlay-bottom{display:none!important}
+.header{background:rgba(245,241,232,.97);border-bottom:1px solid #d8d0c3;backdrop-filter:none;-webkit-backdrop-filter:none}
+.header-container{height:auto;min-height:5.1rem;gap:1.5rem}
+.logo-text{background:none;color:#24231f;-webkit-text-fill-color:currentColor;font-size:.95rem;letter-spacing:.015em}
+.logo-sub{color:#69665f;font-family:var(--font-sans);font-size:.62rem;letter-spacing:.035em;line-height:1.5}
+.nav-button{color:#57544d;border-radius:0;letter-spacing:0}
+.nav-button:hover{color:#24231f;background:transparent}
+.nav-button.active{color:#a65a2e;background:transparent;border-bottom:1px solid #a65a2e}
+.mobile-nav-trigger{color:#24231f;background:transparent;border:1px solid #d8d0c3;border-radius:.3rem}
+.mobile-nav-dropdown{background:#f5f1e8;border-color:#d8d0c3;backdrop-filter:none}
+.mobile-nav-button{color:#45423b;border-radius:.25rem}
+.mobile-nav-button.active{color:#a65a2e;background:#ebe5da;border-left:2px solid #a65a2e}
+.hero-canvas-container{height:clamp(220px,32vw,390px);min-height:220px;max-width:80rem;margin:0 auto;background:#e7e0d4}
+.hero-canvas-container .img-base{object-position:center 35%;filter:grayscale(.12) contrast(1.02)}
+.hero-canvas-container canvas{display:none}
+.narrative-section{background:#f5f1e8;border-top:0}
+.brand-header-grid{border-bottom-color:#d8d0c3;gap:clamp(1.5rem,4vw,4rem)}
+.brand-first-name,.brand-last-name{color:#24231f;font-weight:750;letter-spacing:-.075em}
+.brand-last-name{color:#a65a2e}
+.hero-role-kicker,.summary-label,.academic-credentials-title,.section-headline,.process-index,.case-study-block span{color:#a65a2e}
+.narrative-headline{color:#24231f;font-weight:550;line-height:1.45}
+.hero-capability-line{color:#69665f;font-family:var(--font-sans);letter-spacing:0}
+.lead-p{color:#45423b;font-weight:400}.body-p{color:#69665f}
+.bento-card,.project-card,.case-study-card,.process-card,.skills-category-card{background:#eee8dd;border:1px solid #d8d0c3;border-radius:.4rem;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.bento-card{align-items:flex-start}
+.bento-card:hover,.project-card:hover,.process-card:hover{border-color:#b9a58f;background:#eee8dd;transform:none}
+.bento-card-icon{color:#a65a2e}
+.bento-card-meta .meta-label{color:#817b70}.bento-card-meta .meta-title{color:#24231f}.bento-card-meta .meta-desc{color:#69665f;line-height:1.6}
+.btn-primary,.btn-visit-project,.btn-form-submit,.btn-contact-submit{background:#24231f;color:#f5f1e8;border:1px solid #24231f;border-radius:.3rem;box-shadow:none;font-weight:600}
+.btn-primary:hover,.btn-visit-project:hover,.btn-form-submit:hover,.btn-contact-submit:hover{background:#a65a2e;color:#fffaf3;border-color:#a65a2e;transform:none}
+.btn-secondary{color:#24231f;background:transparent;border:1px solid #b9b0a2;border-radius:.3rem}.btn-secondary:hover{background:#ebe5da}
+.process-section{padding-top:4rem;padding-bottom:5rem}
+.process-title{color:#24231f;font-weight:650}.process-intro{color:#69665f}
+.process-card{min-height:220px;padding:1.35rem}.process-card h3{color:#24231f;font-weight:600}.process-card p{color:#69665f}
+.case-study-card{padding:clamp(1.25rem,3vw,2.25rem)}
+.case-study-card.case-study-featured{border-color:#b9a58f}
+.case-study-header h3{color:#24231f}.case-study-index{color:#c6bdae}
+.case-study-lead,.case-study-block p{color:#69665f}.case-study-block{border-top-color:#d8d0c3}
+.project-category-badge{color:#874522;background:#e7dfd2;border:1px solid #d8c8b7;border-radius:.2rem}
+.project-tech-tag{color:#57544d;background:#e7e0d4;border:1px solid #d8d0c3;border-radius:.2rem}
+.project-card-title,.timeline-title{color:#24231f}
+.project-card:hover .project-card-title,.timeline-item:hover .timeline-title{color:#a65a2e}
+.project-card-desc,.timeline-bullets li{color:#57544d}
+.project-card-footer{border-top-color:#d8d0c3}.btn-github-link{color:#69665f}.btn-github-link:hover{color:#a65a2e}
+.about-header h2,.planner-header h2,.contact-header h2{color:#24231f}
+.about-header p,.projects-header p,.planner-header p,.contact-header p{color:#69665f}
+.glass-panel,.glass-card{background:#eee8dd;border:1px solid #d8d0c3;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.about-summary-quote{background:#ebe5da;border-left:2px solid #a65a2e;border-radius:0}
+.about-summary-quote h3{color:#a65a2e}.about-summary-quote p{color:#57544d;font-style:normal}
+.skills-category-card h4{color:#24231f}.skill-badge{color:#57544d;background:transparent;border-color:#d8d0c3}.skill-badge-dot{background:#a65a2e}
+.timeline-list{border-left-color:#d8d0c3}.timeline-bullet{background:#f5f1e8;border-color:#a65a2e}
+.timeline-title{color:#24231f}.timeline-company{color:#69665f}.timeline-period{color:#874522;background:#e7dfd2}
+footer .glass-panel{background:transparent;border:0;border-top:1px solid #d8d0c3;border-radius:0!important}
+footer .logo-sub{color:#69665f}
+a{ text-underline-offset:.2em }
+a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3px}
+@media(max-width:640px){
+ .header-container{min-height:4.5rem}.logo-sub{max-width:230px;font-size:.56rem}
+ .hero-canvas-container{height:250px;min-height:250px}
+ .brand-first-name,.brand-last-name{font-size:clamp(2.8rem,14vw,4.2rem)}
+ .narrative-section{padding-top:3rem;padding-bottom:3rem}
+ .process-grid{grid-template-columns:1fr}.process-card{min-height:auto}
+ .project-card-footer{align-items:flex-start;flex-wrap:wrap;gap:.8rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}

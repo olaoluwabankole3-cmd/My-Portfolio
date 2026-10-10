@@ -2546,3 +2546,54 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
     padding-right: 0;
   }
 }
+
+
+/* APEX ONE case study — product model, not decorative card UI */
+#tab-projects .apex-one-case-study {
+  border-top: 1px solid #b9a58f;
+}
+#tab-projects .apex-one-loop {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .55rem .7rem;
+  margin-top: 1.6rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid #d8d0c3;
+  border-bottom: 1px solid #d8d0c3;
+  color: #24231f;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+#tab-projects .apex-one-loop i {
+  color: #a65a2e;
+  font-style: normal;
+  font-weight: 400;
+}
+#tab-projects .apex-one-stage {
+  margin: 1rem 0 0;
+  max-width: 780px;
+  color: #69665f;
+  font-size: .82rem;
+  line-height: 1.65;
+}
+#tab-projects .apex-one-stage span {
+  display: block;
+  margin-bottom: .25rem;
+  color: #a65a2e;
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  #tab-projects .apex-one-loop {
+    gap: .5rem;
+    font-size: .78rem;
+  }
+  #tab-projects .apex-one-loop i {
+    font-size: .72rem;
+  }
+}

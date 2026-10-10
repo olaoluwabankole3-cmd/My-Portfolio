@@ -171,10 +171,10 @@ function initCanvasReveal() {
   const maskCanvas = document.createElement("canvas");
   const maskCtx = maskCanvas.getContext("2d");
 
-  // Load smiling overlay image in memory
+  // Load the original photograph that is revealed through the illustrated portrait
   const imgOverlay = new Image();
   imgOverlay.crossOrigin = "anonymous";
-  imgOverlay.src = "https://lh3.googleusercontent.com/d/1R5Yodqa0utrQ2LgkoHNMP_1nLbXzC_8i";
+  imgOverlay.src = "https://lh3.googleusercontent.com/d/1yj2N70l_inwTtpQ5egl17wM1CKPsqsXx";
 
   // Initializing 7 blobs with physics constants to trail and blend organically
   const blobs = [

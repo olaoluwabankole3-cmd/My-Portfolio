@@ -2604,3 +2604,30 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Project evidence: responsive device screenshots within the existing editorial layout. */
+.portfolio-project-visual {
+  margin: 1.4rem 0 1.6rem;
+  overflow: hidden;
+  border: 1px solid #d8d0c3;
+  border-radius: .35rem;
+  background: #eee8dd;
+}
+.portfolio-project-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+#tab-projects .case-study-card .portfolio-project-visual {
+  margin-top: 1.75rem;
+}
+#tab-projects .project-card .portfolio-project-visual {
+  margin-top: 0;
+  margin-bottom: 1.3rem;
+}
+@media (max-width: 640px) {
+  .portfolio-project-visual {
+    margin: 1.15rem 0 1.3rem;
+  }
+}

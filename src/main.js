@@ -5,6 +5,7 @@
 function startApp() {
   initClock();
   initNavigation();
+  initProjectShowcases();
   initCanvasReveal();
 }
 
@@ -12,6 +13,29 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", startApp);
 } else {
   startApp();
+}
+
+// ============================================================================
+// PROJECT SCREENSHOT LOADING
+// Assets are bundled locally; a source-file fallback helps if the CDN path fails.
+// ============================================================================
+function initProjectShowcases() {
+  document.querySelectorAll("img[data-project-showcase]").forEach((image) => {
+    const fallback = image.getAttribute("data-fallback-src");
+    if (!fallback) return;
+
+    const tryFallback = () => {
+      if (image.dataset.fallbackAttempted === "true") return;
+      image.dataset.fallbackAttempted = "true";
+      image.src = fallback;
+    };
+
+    image.addEventListener("error", tryFallback, { once: true });
+    // An eager image might fail before the script attaches its error listener.
+    if (image.complete && image.naturalWidth === 0) {
+      tryFallback();
+    }
+  });
 }
 
 // ============================================================================

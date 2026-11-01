@@ -27,3 +27,11 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Verify deployed showcase assets
+        run: |
+          for project in qorvex converge raysignature ed-alfie; do
+            asset="dist/project-showcases/${project}.webp"
+            test -s "$asset" || { echo "Missing or empty showcase: $asset"; exit 1; }
+          done
+

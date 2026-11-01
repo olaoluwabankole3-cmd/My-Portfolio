@@ -38,7 +38,7 @@ The homepage introduces **QORVEX** (the venture) first, followed by **CORTEX** (
 
 The **Selected Work** section presents the venture and product relationship explicitly in this order:
 
-1. **QORVEX** — a founder-led enterprise software venture focused on connected operations and system development. Its current and only product is CORTEX.
+1. **QORVEX** — a founder-led enterprise software venture focused on connected operations and system development. Its current and only product is CORTEX. [Visit QORVEX Website](https://apex-sync-intelligence.pages.dev/).
 2. **CORTEX (by QORVEX)** — the enterprise intelligence and execution product with substantial architecture implemented. Production readiness is not claimed.
 3. **CONVERGE** — an independent AI-native research and community platform in active development, combining full-stack engineering, database models and agent workflows.
 4. **ALIENTO** — an independent Android-first health technology initiative in design and mobile prototyping, focused on symptom intake and coordinated clinician-led care.
@@ -84,6 +84,8 @@ The generated site is written to `dist/`.
 ## Deployment
 
 The project can be deployed to any static host that supports Vite builds.
+
+The QORVEX corporate website is a separate deployed application. Its verified current Cloudflare Pages address is `https://apex-sync-intelligence.pages.dev/`; the legacy subdomain has not yet been changed to a QORVEX-branded domain.
 
 Typical configuration:
 

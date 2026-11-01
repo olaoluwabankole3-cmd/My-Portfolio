@@ -34,13 +34,17 @@ Capabilities are grouped into:
 
 ### Selected Work
 
-The project hierarchy prioritizes systems that demonstrate business and operational problem-solving:
+The primary products demonstrate distinct engineering and product disciplines:
 
-1. **Brand Studio** — multi-brand, project-based content production system
-2. **APEX ONE** — enterprise operations and product architecture concept
-3. **Ed-Alfie Winmax Advisory** — client-facing advisory platform
-4. **The Raysignature Award** — interactive digital recognition platform
-5. **Captured By Adesuwa Proposal** — purpose-built client proposal experience
+1. **CORTEX — QORVEX** — an enterprise intelligence and execution product with substantial architecture implemented; production readiness is not claimed.
+2. **CONVERGE** — an independent AI-native research and community platform in active development, combining full-stack engineering, database models and agent workflows.
+3. **ALIENTO** — an independent Android-first health technology initiative in design and mobile prototyping, focused on symptom intake and coordinated clinician-led care.
+
+Selected client and delivery work remains separate:
+
+- **The Raysignature Award** — interactive digital recognition.
+- **Ed-Alfie Winmax Advisory** — client-facing advisory platform.
+- **Captured By Adesuwa Proposal** — responsive creative-business proposal.
 
 ### Writing
 
@@ -88,8 +92,8 @@ Typical configuration:
 - **Problems before tools** — projects explain the operational problem and resulting system.
 - **Evidence over claims** — live projects and repositories support the positioning.
 - **Multidisciplinary by design** — prior experience in operations, media, and communication is presented as context for building better software systems.
-- **Founder work supports the profile** — Apex Sync strengthens credibility without replacing the individual professional identity.
+- **Founder work supports the profile** — QORVEX and CORTEX demonstrate product-building work without replacing the individual professional identity.
 
 ## Status
 
-Portfolio V2 is focused on employer positioning and case-study clarity. Future iterations may add richer project screenshots, dedicated case-study pages, and a downloadable resume once the resume redesign is finalized.
+The current portfolio preserves the approved November 2026 redesign while presenting three distinct product initiatives with evidence-based implementation status. Future iterations may add verified screenshots, dedicated case-study pages and a downloadable resume.

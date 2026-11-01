@@ -2548,11 +2548,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
 }
 
 
-/* APEX ONE case study — product model, not decorative card UI */
-#tab-projects .apex-one-case-study {
+/* CORTEX case study — product model, not decorative card UI */
+#tab-projects .cortex-case-study {
   border-top: 1px solid #b9a58f;
 }
-#tab-projects .apex-one-loop {
+#tab-projects .cortex-loop {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -2566,19 +2566,19 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
   font-weight: 600;
   letter-spacing: .01em;
 }
-#tab-projects .apex-one-loop i {
+#tab-projects .cortex-loop i {
   color: #a65a2e;
   font-style: normal;
   font-weight: 400;
 }
-#tab-projects .apex-one-stage {
+#tab-projects .cortex-stage {
   margin: 1rem 0 0;
   max-width: 780px;
   color: #69665f;
   font-size: .82rem;
   line-height: 1.65;
 }
-#tab-projects .apex-one-stage span {
+#tab-projects .cortex-stage span {
   display: block;
   margin-bottom: .25rem;
   color: #a65a2e;
@@ -2589,11 +2589,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #a65a2e;outline-offset:3p
   text-transform: uppercase;
 }
 @media (max-width: 640px) {
-  #tab-projects .apex-one-loop {
+  #tab-projects .cortex-loop {
     gap: .5rem;
     font-size: .78rem;
   }
-  #tab-projects .apex-one-loop i {
+  #tab-projects .cortex-loop i {
     font-size: .72rem;
   }
 }

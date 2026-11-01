@@ -49,7 +49,6 @@ Selected client and delivery work remains separate:
 
 - **The Raysignature Award** — interactive digital recognition.
 - **Ed-Alfie Winmax Advisory** — client-facing advisory platform.
-- **Captured By Adesuwa Proposal** — responsive creative-business proposal.
 
 ### Writing
 

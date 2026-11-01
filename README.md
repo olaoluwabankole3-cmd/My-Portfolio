@@ -36,11 +36,14 @@ Capabilities are grouped into:
 
 The homepage introduces **QORVEX** (the venture) first, followed by **CORTEX** (QORVEX's current product), then the independent initiatives **CONVERGE** and **ALIENTO**.
 
-The featured software products demonstrate distinct engineering and product disciplines:
+The **Selected Work** section presents the venture and product relationship explicitly in this order:
 
-1. **QORVEX → CORTEX** — QORVEX is the venture; CORTEX is its enterprise intelligence and execution product, with substantial architecture implemented. Production readiness is not claimed.
-2. **CONVERGE** — an independent AI-native research and community platform in active development, combining full-stack engineering, database models and agent workflows.
-3. **ALIENTO** — an independent Android-first health technology initiative in design and mobile prototyping, focused on symptom intake and coordinated clinician-led care.
+1. **QORVEX** — a founder-led enterprise software venture focused on connected operations and system development. Its current and only product is CORTEX.
+2. **CORTEX (by QORVEX)** — the enterprise intelligence and execution product with substantial architecture implemented. Production readiness is not claimed.
+3. **CONVERGE** — an independent AI-native research and community platform in active development, combining full-stack engineering, database models and agent workflows.
+4. **ALIENTO** — an independent Android-first health technology initiative in design and mobile prototyping, focused on symptom intake and coordinated clinician-led care.
+
+QORVEX and CORTEX appear separately for clarity, not as two unrelated products. CONVERGE and ALIENTO are independent of QORVEX.
 
 Selected client and delivery work remains separate:
 

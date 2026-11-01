@@ -82,7 +82,12 @@
       <section id="tab-home" class="tab-content active">
         <div id="canvas-reveal-root" class="hero-canvas-container">
           <img class="img-base" src="https://lh3.googleusercontent.com/d/1yj2N70l_inwTtpQ5egl17wM1CKPsqsXx" alt="Original photograph of Bankole Olaoluwa" crossorigin="anonymous" />
-          <canvas id="interactive-reveal-canvas"></canvas>
+          <canvas id="interactive-reveal-canvas" aria-hidden="true"></canvas>
+          <div class="hero-first-impression">
+            <p class="hero-first-impression-role">BUSINESS SYSTEMS DEVELOPER</p>
+            <p class="hero-first-impression-statement">I build software that makes complex work simpler.</p>
+            <button class="hero-first-impression-link" type="button" data-tab-link="projects">Explore selected work <span aria-hidden="true">↗</span></button>
+          </div>
         </div>
 
         <div id="home-narrative" class="narrative-section py-20 px-4 px-sm-6 px-lg-8">
@@ -167,7 +172,7 @@
                   Explore My Work
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
-                <button class="btn-secondary" data-tab-link="about">Professional Profile</button>
+                <button class="btn-secondary" data-tab-link="contact">Get in Touch</button>
               </div>
             </div>
           </div>
